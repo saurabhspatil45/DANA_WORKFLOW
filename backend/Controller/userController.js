@@ -1,16 +1,18 @@
 import expressAsyncHandler from "express-async-handler";
 import bcrypt from "bcryptjs";
-import userData from "../Models/UserModel.js";
+import UserData from "../Models/UserModel.js";
 import jwt from "jsonwebtoken";
 
 export const userRegisterController = expressAsyncHandler(async (req, res) => {
-  const { fname,lname,username,eid,email,mobno,password,location,isAdmin} = req.body.data;
-  try {
-    await userData.create({ fname,lname,username,eid,email,mobno,password,location,isAdmin});
+  const { fname,lname,username,eid,email,mobno,password,location,isAdmin} = req.body;
+ 
+   let ans = await UserData.create({ fname:fname,lname:lname,username:username,eid:eid,email:email,mobno:mobno,password:password,location:location,isAdmin:isAdmin});
+   
+    try {
+   res.json({ans })
 
-    return res.status(201).json({ message: "user created Successfully" });
   } catch (error) {
-    return res.status(500).json({ message: "Internal Server Error" });
+    return res.status(500).json({ error: error});
   }
 });
 
@@ -18,10 +20,13 @@ export const userRegisterController = expressAsyncHandler(async (req, res) => {
 
 export const LoginController = expressAsyncHandler(async (req, res) => {
   console.log(req.body);
-  const { username, password} = req.body.username;
-
-  const user = await userData.findOne({ username,password});
-try {
+  const { username, password} = req.body;
+try{
+  let user = await UserData.findOne({ username:username});
+  if (!user) {
+    success = false
+    return res.status(400).json({ success, error: "Please try to login with correct credentials" })
+}
   const token = jwt.sign(
     {
       name: user.name,

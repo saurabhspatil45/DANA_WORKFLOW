@@ -1,6 +1,6 @@
 import express from 'express'
 import connectDatabase from './config/MongoDb.js'
-import userRouter from './Routes/userRoutes.js'
+import userRoutes from './Routes/userRoutes.js'
 import roleRoute from './Routes/userRoleRoutes.js'
 import taskRoute from './Routes/taskRoutes.js'
 import oBservation from './Routes/ObservationRoutes.js'
@@ -27,7 +27,7 @@ app.get('/', (req, res) => {
 
 // user Data api
 
-app.use('/api', userRouter)
+app.use('/api', userRoutes)
 
 // halfoption data api
 app.use('/api',roleRoute)

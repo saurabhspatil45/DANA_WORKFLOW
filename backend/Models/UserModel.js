@@ -1,6 +1,7 @@
 import mongoose from 'mongoose'
+const { Schema } = mongoose;
 
-const UserSchema = mongoose.Schema({
+const UserSchema = new Schema({
     fname: { type: String, required: true },
     lname: { type: String, required: true },
     username: { type: String, required: true, unique: true },
@@ -12,6 +13,6 @@ const UserSchema = mongoose.Schema({
     isAdmin:{type:Boolean,default:false},
 })
 
-const userData = mongoose.model('userdatas', UserSchema)
+const UserData = mongoose.model('userdata', UserSchema)
 
-export default userData
+module.exports = UserData
