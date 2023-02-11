@@ -5,6 +5,7 @@ import axios from 'axios'
 
 export const PostObsdata = createAsyncThunk('obs/post',
     async (data) => {
+      
     await axios.post('/api/createobs',{data})
     })
 
