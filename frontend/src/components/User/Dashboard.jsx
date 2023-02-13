@@ -285,6 +285,8 @@ export default function PermanentDrawerLeft() {
             </ListItemButton>
           </List>
         </Drawer>
+
+        {/* if home is true then it will show home Homepage component  which contains notifications, message like things */}
         {home ? <HomePage></HomePage> : ("")}
         {product ? ("") : ("")}
         {task ? <TaskPage></TaskPage> : ("")}

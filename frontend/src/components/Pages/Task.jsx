@@ -14,7 +14,7 @@ import MoreIcon from '@mui/icons-material/MoreVert';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import MailIcon from '@mui/icons-material/Mail';
-// import { getAllTask,getSingleTask } from '../../services/taskService'
+import { getAllTask,getSingleTask } from '../../services/taskService'
 import { getAllTaskObject,getSingleTaskObject } from '../../services/TaskObjectServices'
 import TaskModal from "../Modals/TaskModal";
 import { Avatar } from "@mui/material";
@@ -143,7 +143,7 @@ const Task = () => {
         return <div>Loading..</div>;
     }
     if (data.length == 0) {
-        // dispatch(getAllTask(localStorage.getItem("username")));
+        dispatch(getAllTask(localStorage.getItem("username")));
     }
     else {
         return (

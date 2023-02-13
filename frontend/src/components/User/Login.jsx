@@ -39,6 +39,7 @@ const Login = () => {
         e.preventDefault()
         dispatch(PostLoginRequest({ username, password }))
         localStorage.setItem('username',username)
+        console.log(username);
         navigate('/app')
     }
     if (!localStorage.getItem('token')) {

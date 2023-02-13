@@ -123,12 +123,13 @@ export default function CustomizedDialogs() {
         //     .catch(error => {
         //         console.log(error)
         //     })
+        console.log("posting obser")
         dispatch(PostObsdata(Obser))
 
         handleClose()
         // wrongreload()
         handleClick()
-        window.location.href = "/observations"
+        // window.location.href = "/observations"
 
     }
 

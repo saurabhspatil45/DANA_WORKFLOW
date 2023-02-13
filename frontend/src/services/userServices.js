@@ -5,7 +5,7 @@ import jwt from 'jsonwebtoken'
 
 // post login request
 export const PostLoginRequest = createAsyncThunk('Login/post', async (username, password) => {
-  const { data } = await axios.post('api/login', { username, password })
+  const { data } = await axios.post('/api/login', { username, password })
 
   return data
 

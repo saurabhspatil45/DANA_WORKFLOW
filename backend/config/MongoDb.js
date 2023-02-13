@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 const connectDatabase = async () => {
   try {
-    const conn =  mongoose.connect('mongodb://localhost:27017/NCR', {
+    const conn =  mongoose.connect('mongodb://127.0.0.1/NCR', {
       useUnifiedTopology: true,
       useNewUrlParser: true,
     } ,() => {

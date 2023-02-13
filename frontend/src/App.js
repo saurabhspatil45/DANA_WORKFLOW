@@ -55,6 +55,15 @@ const App = () => {
     return (
       <div className="app-td">
       <React.Fragment>
+{/* 
+dashboard contains fields like  setHome(false)
+    setProduct(false)
+    setTask(false)
+    setUser(false)
+    setObs(false)
+    setNCR(true)
+    setProfile(false) */}
+
         <Dashboard></Dashboard>
       </React.Fragment>
     </div>
