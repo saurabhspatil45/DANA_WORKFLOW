@@ -4,7 +4,7 @@ import axios from 'axios'
 // read Task data
 
 export const getAllTask = createAsyncThunk("getAllTask", async (search) => {
-    const { data } = await axios.get(`/api/getalltask?searchQ=${search}`);
+    const { data } = await axios.get(`http://localhost:3001/api/getalltask?searchQ=${search}`);
     return data;
   });
 
@@ -13,14 +13,15 @@ export const getAllTask = createAsyncThunk("getAllTask", async (search) => {
 export const getSingleTask = createAsyncThunk(
   "task/getSingleTask",
   async (id) => {
-    const { data } = await axios.get(`/api/task/${id}`);
+    const { data } = await axios.get(`http://localhost:3001/api/task/${id}`);
     return data;
   }
 );
 
 export const PostTaskData = createAsyncThunk('posttaskdata/post',
   async (data) => {
-    await axios.post('/api/posttask', { data })
+    console.log(data);
+    await axios.post('http://localhost:3001/api/posttask', { data })
   })
 
 // initialState

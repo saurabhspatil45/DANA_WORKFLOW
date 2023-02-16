@@ -11,11 +11,17 @@ const TaskModal = ({
 
   const { singleData } = useSelector((state) => state.taskObjectReducer);
   const taskdata = { ...singleData };
+  const { data2 } = useSelector((state) => state.NcrReducer);
+  const singleNcr = {...data2}
+  console.log("here is taskdata")
+console.log(taskdata)
+console.log("here is singleNcr")
+console.log(singleNcr)
 
   // let navigate = useNavigate();
   return (
     <div id="myModal" className="modal">
-      {console.log(taskdata)}
+  
       <div className="modal-content">
         <span
           className="close"
@@ -72,6 +78,11 @@ const TaskModal = ({
               <Typography marginLeft={'2.5rem'} gutterBottom variant="h9" component="div">
               {taskdata.data.Issue}
               </Typography>
+     
+              
+            
+             
+            
             </div>
           </div>
           <div style={{ borderLeft: '2px solid black', height: '100', marginLeft: '5rem' }}></div>

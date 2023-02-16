@@ -16,10 +16,12 @@ import Menu from '@mui/material/Menu';
 import MailIcon from '@mui/icons-material/Mail';
 import { getAllTask,getSingleTask } from '../../services/taskService'
 import { getAllTaskObject,getSingleTaskObject } from '../../services/TaskObjectServices'
+import { getSingleNcrData } from "../../services/ncrServices";
+
 import TaskModal from "../Modals/TaskModal";
 import { Avatar } from "@mui/material";
-
 const Task = () => {
+    let navigate = useNavigate();
     const [page, setPage] = useState(1);
     const [modal1, setModal] = useState(false);
     const [anchorEl, setAnchorEl] = React.useState(null);
@@ -28,20 +30,32 @@ const Task = () => {
     const isMenuOpen = Boolean(anchorEl);
     const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
-    const { loading, data, skipCount } = useSelector(
+    const { loading, data,skipCount } = useSelector(
         (state) => state.taskObjectReducer
     );
-
+   
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(getAllTaskObject(localStorage.getItem("username")));
     }, [page]);
 
+    const openIssue = (param1) => {
+        localStorage.setItem("workId",param1);
+        console.log(param1)
+        if (param1) {
+            navigate('/workdetails')
+            
+        }
+    };
+
+
     const handleChange = (event, value) => {
         setPage(value);
     };
-    const openManageModal = (id) => {
+    const openManageModal = (id,issue) => {
+        console.log("this is the issue"+issue)
         dispatch(getSingleTaskObject(id));
+        dispatch(getSingleNcrData(issue))
         setModal(true);
     };
 
@@ -205,19 +219,27 @@ const Task = () => {
                             <th>Description</th>
                             <th>Created on</th>
                             <th>Assigned Date</th>
+                            <th>Status</th>
+                            <th>timer</th>
+                            <th>open</th>
+                        
                         </tr>
                         {data[0].data.map((res,index) => (
                             <React.Fragment key={res._id}>
                                 {/* {res.CreatorId===localStorage.getItem("username")} */}
                                 <tr>
                                     <td>{index+1}</td>
-                                    <td style={{ color: 'blue', cursor: 'pointer' }} onClick={() => openManageModal(res._id)} >
+                                    <td style={{ color: 'blue', cursor: 'pointer' }} onClick={() => openManageModal(res._id,res.Issue)} >
                                         {res.Id}
                                     </td>
                                     <td>{res.Creator}</td>
                                     <td>{res.Issue}</td>
                                     <td>{res.created.substring(0,10)}</td>
                                      <td>{res.AssignedDate.substring(0,10)}</td>
+                                       <td></td>
+                                       <td></td>
+                                   
+                                       <td><button onClick={() => openIssue(res.Id)}> open</button></td>
                                 </tr>
                             </React.Fragment>
                         ))}

@@ -12,6 +12,7 @@ import {
   } from "react-router-dom";
 import Login from './components/User/Login'
 import Profile from './components/User/Profile'
+import Workdetails from './components/Pages/Workdetails'
 // import Observation from '../src/components/Pages/Observation'
 // import  Ncrmain  from "../src/components/Pages/Ncrmain"
 
@@ -22,6 +23,7 @@ ReactDOM.render(
             <Routes>
                 <Route path='/' element={<Login/>}></Route>
                 <Route path='app' element={<App/>}></Route>
+                <Route path='workdetails' element={<Workdetails/>}></Route>
                 <Route path='userregistration' element={<Protected Component={UserRegistration }/>}></Route>
                 <Route path='profile' element={<Protected Component={Profile }/>}></Route>
                 {/* <Route path="observations" element={<Observation/>}></Route>

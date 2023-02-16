@@ -1,6 +1,6 @@
 import express from 'express'
 
-import { Ncrcreation,getALLncr,DeleteNcrbyid,PatchBYidncr } from '../Controller/NcrController.js'
+import {getSinglencr, Ncrcreation,getALLncr,DeleteNcrbyid,PatchBYidncr } from '../Controller/NcrController.js'
 
 const NCR = express.Router()
 
@@ -10,7 +10,7 @@ NCR.post("/createncr",Ncrcreation)
 //Route for Get all ncr
 NCR.get("/getncr",getALLncr)
 
-
+NCR.get("/getSingleNcr",getSinglencr)
 //Route for Delete ncr by id
 NCR.put('/ncrdatadelete', DeleteNcrbyid)
 

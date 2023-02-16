@@ -1,7 +1,11 @@
 {
   "name": "menu",
   "version": "0.1.0",
-  "proxy": "http://localhost:3001",
+  "proxy": {
+    "/auth/google": {
+      "target": "127.0.0.1:3001"
+    }
+  },
   "private": true,
   "dependencies": {
     "@emailjs/browser": "^3.10.0",

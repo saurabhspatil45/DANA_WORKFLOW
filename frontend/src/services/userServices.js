@@ -5,7 +5,7 @@ import jwt from 'jsonwebtoken'
 
 // post login request
 export const PostLoginRequest = createAsyncThunk('Login/post', async (username, password) => {
-  const { data } = await axios.post('/api/login', { username, password })
+  const { data } = await axios.post('http://localhost:3001/api/login', { username, password })
 
   return data
 
@@ -14,7 +14,7 @@ export const PostLoginRequest = createAsyncThunk('Login/post', async (username, 
 // read user  data
 
 export const GetAllUser = createAsyncThunk('/getuser/get', async () => {
-  const { data } = await axios.get('/api/user')
+  const { data } = await axios.get('http://localhost:3001/api/user')
   console.log(data)
   return data
 })
@@ -25,7 +25,7 @@ export const GetAllUser = createAsyncThunk('/getuser/get', async () => {
 export const userSingle = createAsyncThunk(
   "trackwidth/getdata",
   async (id) => {
-    const { data } = await axios.get(`/api/user/${id}`);
+    const { data } = await axios.get(`http://localhost:3001/api/user/${id}`);
     return data;
   }
 );
@@ -34,7 +34,7 @@ export const userSingle = createAsyncThunk(
 export const AddUserD = createAsyncThunk(
   "trackwidth/add",
   async (data) => {
-    await axios.post("/api/register", { data });
+    await axios.post("http://localhost:3001/api/register", { data });
   }
 );
 
@@ -43,7 +43,7 @@ export const AddUserD = createAsyncThunk(
 export const UpdateUser = createAsyncThunk(
   "trackwidth/update",
   async (data) => {
-    await axios.put("/api/user", { data });
+    await axios.put("http://localhost:3001/api/user", { data });
   }
 );
 
@@ -52,19 +52,19 @@ export const UpdateUser = createAsyncThunk(
 export const DeleteUser = createAsyncThunk(
   "trackwidth/delete",
   async (id) => {
-    await axios.put("/api/user/delete", { id });
+    await axios.put("http://localhost:3001/api/user/delete", { id });
   }
 );
 
 // search call
 
 export const getSearch = createAsyncThunk("getsearch", async (search) => {
-  const { data } = await axios.get(`/api/mearch?searchQ=${search}`);
+  const { data } = await axios.get(`http://localhost:3001/api/mearch?searchQ=${search}`);
   return data;
 });
 
 export const getSearch2 = createAsyncThunk("getsearch2", async (search) => {
-  const { data } = await axios.get(`/api/mearch2?searchQ=${search}`);
+  const { data } = await axios.get(`http://localhost:3001/api/mearch2?searchQ=${search}`);
   return data;
 });
 

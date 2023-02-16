@@ -16,6 +16,14 @@ export const GetAllNcrData = createAsyncThunk('/getncr/get', async () => {
     return data
   })
 
+  //Get single Ncr Data
+export const getSingleNcrData = createAsyncThunk('/getSinglencr/get', async (issue) => {
+ console.log("issue is "+ issue)
+  const { data } = await axios.get('/api/getSingleNcr',{issue})
+ 
+  return data
+})
+
   // delete data
 
 export const NcrDataDelete = createAsyncThunk('ncr/delete',
@@ -34,6 +42,7 @@ export const UpdateNcr = createAsyncThunk(
 
 const initialState = {
     data: [],
+    data2:[],
     loading: true,
     // token: [],
     success: false,
@@ -53,6 +62,14 @@ const initialState = {
       })
       .addCase(GetAllNcrData.fulfilled, (state, action) => {
         state.data.push(action.payload)
+        state.loading = false
+  
+      })
+      .addCase(getSingleNcrData.pending, (state, action) => {
+        state.loading = true
+      })
+      .addCase(getSingleNcrData.fulfilled, (state, action) => {
+        state.data2.push(action.payload)
         state.loading = false
   
       })
