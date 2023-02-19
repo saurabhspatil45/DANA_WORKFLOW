@@ -13,11 +13,28 @@ export const getAllTask = createAsyncThunk("getAllTask", async (search) => {
 export const getSingleTask = createAsyncThunk(
   "task/getSingleTask",
   async (id) => {
-    const { data } = await axios.get(`http://localhost:3001/api/task/${id}`);
-    return data;
+    
+    const { data } = await axios.get(`http://localhost:3001/api/task`,{id});
+    console.log("task data is ")
+    console.log(data.data[0]);
+    return data.data[0];
   }
 );
+//Update Single Data
 
+export const updateSingleTask = createAsyncThunk(
+  "task/getSingleTask",
+  async (credentials) => {
+    console.log("id and credentials")
+  const id = localStorage.getItem("workId")
+    console.log(id  )
+
+await axios.put(`http://localhost:3001/api/updatetask/${id}`,credentials);
+   
+
+
+  }
+);
 export const PostTaskData = createAsyncThunk('posttaskdata/post',
   async (data) => {
     console.log(data);

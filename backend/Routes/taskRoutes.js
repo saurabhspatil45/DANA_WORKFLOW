@@ -1,5 +1,5 @@
 import express from 'express'
-import {getTask,taskSingle,PostTask} from '../Controller/TaskController.js'
+import {getTask,taskSingle,PostTask,updateSingleTask} from '../Controller/TaskController.js'
 
 
 const taskRoute = express.Router()
@@ -7,8 +7,8 @@ const taskRoute = express.Router()
 // read router
 taskRoute.get('/getalltask',getTask)
 
-taskRoute.get('/task/:id',taskSingle)
-
+taskRoute.get('/task',taskSingle)
+taskRoute.put('/updatetask/:id',updateSingleTask)
 //post task
 taskRoute.post("/posttask",PostTask)
 

@@ -34,14 +34,12 @@ export const getALLncr = expressAsyncHandler(async (req, res) => {
 //Get all request for ncr creation
 export const getSinglencr = expressAsyncHandler(async (req, res) => {
   //console.log(req.body);
-  const Sncr = await Ncr.findOne(req.body);
+  const sncr = await Ncr.find(req.body);
   try {
     //const exdata = data;
-    console.log(Sncr);
-    return res.send({
-        message: "GOt single Ncr  successfully",
-        Sncr: Sncr,
-    });
+    console.log(sncr);
+    return res.status(200)
+    .json({ message: "got single ncr successfully", sncr});
     
   } catch (error) {
     res.status(500).json({ error: error.message });

@@ -6,12 +6,12 @@ import axios from 'axios'
 
 export const PostNcrdata = createAsyncThunk('ncr/post',
     async (data) => {
-    await axios.post('/api/createncr',{data})
+    await axios.post('http://localhost:3001/api/createncr',{data})
 })
 
 //Get All Ncr Data
 export const GetAllNcrData = createAsyncThunk('/getncr/get', async () => {
-    const { data } = await axios.get('api/getncr')
+    const { data } = await axios.get('http://localhost:3001/api/getncr')
     console.log(data)
     return data
   })
@@ -19,16 +19,17 @@ export const GetAllNcrData = createAsyncThunk('/getncr/get', async () => {
   //Get single Ncr Data
 export const getSingleNcrData = createAsyncThunk('/getSinglencr/get', async (issue) => {
  console.log("issue is "+ issue)
-  const { data } = await axios.get('/api/getSingleNcr',{issue})
- 
-  return data
+  const  data  = await axios.get('http://localhost:3001/api/getSingleNcr',{issue})
+  console.log("this is actural data")
+ console.log(data.data.sncr[0]);
+  return data.data.sncr[0];
 })
 
   // delete data
 
 export const NcrDataDelete = createAsyncThunk('ncr/delete',
 async (id) => {
-  await axios.put('/api/ncrdatadelete', { id })
+  await axios.put('http://localhost:3001/api/ncrdatadelete', { id })
 }
 )
 
@@ -36,7 +37,7 @@ async (id) => {
 export const UpdateNcr = createAsyncThunk(
   "ncr/update",
   async (data) => {
-    await axios.put("/api/updatencr", { data });
+    await axios.put("http://localhost:3001/api/updatencr", { data });
   }
 );
 

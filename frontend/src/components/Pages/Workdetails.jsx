@@ -5,7 +5,7 @@ import "./workdetails.css";
 import { useDispatch, useSelector } from "react-redux";
 import { getSingleNcrData } from "../../services/ncrServices";
 import { getAllTaskObject,getSingleTaskObject } from '../../services/TaskObjectServices'
-import { getSingleTask } from "../../services/taskService";
+import { getSingleTask,updateSingleTask } from "../../services/taskService";
 function Workdetails() {
   const dispatch = useDispatch();
   const id = localStorage.getItem("workId");
@@ -14,34 +14,38 @@ function Workdetails() {
     setCredentials({ ...credentials, [e.target.name]: e.target.value });
   }
   
-  const handleSubmit = ()=>{
+  const handleSubmit = (id)=>{
     // setCredentials({  ...credentials, Id : data.Id ,  Type : data.Type ,  Problem : data.Problem ,
     //   ProcessStage : data.ProcessStage ,  PartNo : data.PartNo ,  ReworkHrs : data.ReworkHrs ,  Issue : data.Issue ,  FailureType : data.FailureType , 
     //   RCA : data.RCA ,  Resolutionowner : data.Resolutionowner ,  ResolutionownerId : data.ResolutionownerId ,  RCAValidator : data.RCAValidator ,  
     //   RCAValidatorId : data.RCAValidatorId ,  Finalapprover : data.Finalapprover ,  FinalapproverId : data.FinalapproverId , 
     //   Creator : data.Creator ,  CreatorId : data.CreatorId ,  created : data.created})
-        setCredentials({  ...credentials, Id : data.Id ,  Type : data.Type ,  Problem : data.Problem ,
-      ProcessStage : data.ProcessStage ,  PartNo : data.PartNo ,  ReworkHrs : data.ReworkHrs ,  Issue : data.Issue ,  FailureType : data.FailureType , 
-      RCA : data.RCA ,  Resolutionowner : data.Resolutionowner ,  ResolutionownerId : data.ResolutionownerId ,  RCAValidator : data.RCAValidator ,  
-      RCAValidatorId : data.RCAValidatorId ,  Finalapprover : data.Finalapprover ,  FinalapproverId : data.FinalapproverId , 
-      Creator : data.Creator ,  CreatorId : data.CreatorId ,  created : data.created})
-      console.log("updated data")
+      //   setCredentials({  ...credentials, Id : data.Id ,  Type : data.Type ,  Problem : data.Problem ,
+      // ProcessStage : data.ProcessStage ,  PartNo : data.PartNo ,  ReworkHrs : data.ReworkHrs ,  Issue : data.Issue ,  FailureType : data.FailureType , 
+      // RCA : data.RCA ,  Resolutionowner : data.Resolutionowner ,  ResolutionownerId : data.ResolutionownerId ,  RCAValidator : data.RCAValidator ,  
+      // RCAValidatorId : data.RCAValidatorId ,  Finalapprover : data.Finalapprover ,  FinalapproverId : data.FinalapproverId , 
+      // Creator : data.Creator ,  CreatorId : data.CreatorId ,  created : data.created})
+      // dispatch(updateSingleTask(id,credentials.action,credentials.causes,credentials.issuecat,credentials.lts,credentials.rcauses,credentials.vrcauses));
+      dispatch(updateSingleTask(credentials));
     console.log(credentials)
+      
+    
   }
   useEffect(() => {
     dispatch(getSingleTask(id));
+   
     // dispatch(getSingleNcrData(id));
   }, []);
   const { singleData } = useSelector((state) => state.taskReducer);
   const data = { ...singleData };
   console.log("this is task data")
   console.log(data);
-  
-  const [credentials, setCredentials] = useState({ Id : data.Id ,  Type : data.Type ,  Problem : data.Problem ,
-      ProcessStage : data.ProcessStage ,  PartNo : data.PartNo ,  ReworkHrs : data.ReworkHrs ,  Issue : data.Issue ,  FailureType : data.FailureType , 
-      RCA : data.RCA ,  Resolutionowner : data.Resolutionowner ,  ResolutionownerId : data.ResolutionownerId ,  RCAValidator : data.RCAValidator ,  
-      RCAValidatorId : data.RCAValidatorId ,  Finalapprover : data.Finalapprover ,  FinalapproverId : data.FinalapproverId , 
-      Creator : data.Creator ,  CreatorId : data.CreatorId ,  created : data.created ,   action:"",causes:"",rcauses:"",vrcauses:"",issuecat:"",lts:"",})
+  const [credentials, setCredentials] = useState({   ContainmentAction:"",Causes:"",RootCause:"",VerifiedCause:"",IssueCatogorization:"",SolutionIdentified:""})
+  // const [credentials, setCredentials] = useState({ Id : 34 ,  Type : data.Type ,  Problem : data.Problem ,
+  //     ProcessStage : data.ProcessStage ,  PartNo : data.PartNo ,  ReworkHrs : data.ReworkHrs ,  Issue : data.Issue ,  FailureType : data.FailureType , 
+  //     RCA : data.RCA ,  Resolutionowner : data.Resolutionowner ,  ResolutionownerId : data.ResolutionownerId ,  RCAValidator : data.RCAValidator ,  
+  //     RCAValidatorId : data.RCAValidatorId ,  Finalapprover : data.Finalapprover ,  FinalapproverId : data.FinalapproverId , 
+  //     Creator : data.Creator ,  CreatorId : data.CreatorId ,  created : data.created ,   action:"",causes:"",rcauses:"",vrcauses:"",issuecat:"",lts:"",})
   // const { data2 } = useSelector((state) => state.NcrReducer);
 
   // const data = { ...data2[0] };
@@ -185,7 +189,7 @@ function Workdetails() {
             <Typography fontWeight={600} gutterBottom variant="h9" component="div">
             Containment action 
             </Typography>
-            <textarea onChange={onChange} name= "action" value = {credentials.action} 
+            <textarea onChange={onChange} name= "ContainmentAction" value = {credentials.ContainmentAction} 
               style={{ width: "400px", minHeight: '100px',padding:'10px'}}
               type="text"
               placeholder="Comment"
@@ -193,7 +197,7 @@ function Workdetails() {
             <Typography fontWeight={600} gutterBottom variant="h9" component="div">
             All possible causes 
             </Typography>
-            <textarea value={credentials.causes} onChange={onChange} name="causes"
+            <textarea value={credentials.Causes} onChange={onChange} name="Causes"
               style={{ width: "400px", minHeight: '100px',padding:'10px'}}
               type="text"
               placeholder="Comment"
@@ -201,7 +205,7 @@ function Workdetails() {
             <Typography fontWeight={600} gutterBottom variant="h9" component="div">
             Most likely root cause(s)
             </Typography>
-            <textarea onChange={onChange}  value = {credentials.rcauses} name="rcauses"
+            <textarea onChange={onChange}  value = {credentials.RootCause} name="RootCause"
               style={{ width: "400px", minHeight: '100px',padding:'10px'}}
               type="text"
               placeholder="Comment"
@@ -209,7 +213,7 @@ function Workdetails() {
             <Typography fontWeight={600} gutterBottom variant="h9" component="div">
             Verified root cause 
             </Typography>
-            <textarea onChange={onChange}  value = {credentials.vrcauses} name="vrcauses"
+            <textarea onChange={onChange}  value = {credentials.VerifiedCause} name="VerifiedCause"
               style={{ width: "400px", minHeight: '100px',padding:'10px'}}
               type="text"
               placeholder="Comment"
@@ -217,7 +221,7 @@ function Workdetails() {
             <Typography fontWeight={600} gutterBottom variant="h9" component="div">
             Issue categorization
             </Typography>
-            <textarea onChange={onChange}  value = {credentials.issuecat} name="issuecat"
+            <textarea onChange={onChange}  value = {credentials.IssueCatogorization} name="IssueCatogorization"
               style={{ width: "400px", minHeight: '100px',padding:'10px'}}
               type="text"
               placeholder="Comment"
@@ -225,7 +229,7 @@ function Workdetails() {
              <Typography fontWeight={600} gutterBottom variant="h9" component="div">
              Long term solution identified 
             </Typography>
-            <textarea onChange={onChange} value = {credentials.lts} name="lts"
+            <textarea onChange={onChange} value = {credentials.SolutionIdentified} name="SolutionIdentified"
               style={{ width: "400px", minHeight: '100px',padding:'10px'}}
               type="text"
               placeholder="Comment"
@@ -233,7 +237,7 @@ function Workdetails() {
              <div style={{ display: "flex",justifyContent:'right'}}>
               <button className="bst-btn-delete">Reject
               </button>
-              <button className="bst-btn-update" onClick={handleSubmit} >Approve
+              <button className="bst-btn-update" onClick={() => handleSubmit(data.Id)} >Approve
               </button>
             </div>
 </div>

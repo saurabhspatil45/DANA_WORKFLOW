@@ -17,10 +17,10 @@ export const getTask = expressAsyncHandler(async (req, res) => {
   // single user Data
 
 export const taskSingle = expressAsyncHandler(async (req, res) => {
-  const singleid = req.params.id
+  const singleid = req.body
 console.log(singleid)
   try {
-      const data = await taskData.findById(singleid)
+      const data = await taskData.find(singleid)
       if (data) {
         return  res.status(200).json({message:"successfully found single task",data})
       }
@@ -32,6 +32,31 @@ console.log(singleid)
   }
 })
 
+
+
+ // update single task Data
+
+ export const updateSingleTask = expressAsyncHandler(async (req, res) => {
+  const singleid = req.params.id
+  const credentials = req.body
+  console.log("contenment action is")
+  console.log(singleid)
+
+  try {
+      const data = await taskData.find({singleid})
+     console.log(data)
+      if (data) {
+      await taskData.updateOne( {Id:singleid}, { $set:credentials
+         })
+        return  res.status(200).json({message:"successfully found single task",data})
+      }
+      return   res.status(400).json({message:"No id found"})
+         
+  }
+  catch (error) {
+      res.status(500).json({error})
+  }
+})
 // post request for ncr modify
 export const PostTask = expressAsyncHandler(async (req, res) => {
   const {Id,Type,Problem,ProcessStage,PartNo,ReworkHrs,Issue,FailureType,RCA,Resolutionowner,ResolutionownerId,RCAValidator,RCAValidatorId,Finalapprover,FinalapproverId,Creator,CreatorId,created,ContainmentAction,Causes,RootCause,VerifiedCause,IssueCatogorization,SolutionIdentified,CreatorStatus,ROStatus,ValidatorStatus,ApproverStatus} = req.body.data
