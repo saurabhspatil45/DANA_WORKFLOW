@@ -163,6 +163,7 @@ const Home = () => {
                 {renderMenu}
             </Box>
             <h1 style={{ marginTop: '100px' }}>Home</h1>
+            
         </div>
     )
 }
