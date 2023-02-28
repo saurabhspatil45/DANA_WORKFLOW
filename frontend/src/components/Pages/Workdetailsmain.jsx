@@ -16,7 +16,8 @@ import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import MailIcon from '@mui/icons-material/Mail';
 import Workdetails from "./Workdetails";
-const Ncrmain = () => {
+const Workdetailsmain = (props) => {
+    const {workdetailsb} = props;
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
@@ -167,10 +168,10 @@ const Ncrmain = () => {
             </Box>
             <div style={{ marginTop: '90px' }}>
             </div>
-            <Ncr />
+         <Workdetails workdetailsb ={workdetailsb} />
            
         </div>
     )
 }
 
-export default Ncrmain
+export default Workdetailsmain

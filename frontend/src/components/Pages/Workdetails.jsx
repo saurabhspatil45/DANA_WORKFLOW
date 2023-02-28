@@ -6,15 +6,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { getSingleNcrData } from "../../services/ncrServices";
 import { getAllTaskObject,getSingleTaskObject } from '../../services/TaskObjectServices'
 import { getSingleTask,updateSingleTask } from "../../services/taskService";
+import { display } from "@mui/system";
 function Workdetails() {
   const dispatch = useDispatch();
   const id = localStorage.getItem("workId");
-  
+  const [done, setdone] = useState(false);
   const onChange = (e)=>{
     setCredentials({ ...credentials, [e.target.name]: e.target.value });
   }
   
-  const handleSubmit = (id)=>{
+  const handleSubmit = (event)=>{
     // setCredentials({  ...credentials, Id : data.Id ,  Type : data.Type ,  Problem : data.Problem ,
     //   ProcessStage : data.ProcessStage ,  PartNo : data.PartNo ,  ReworkHrs : data.ReworkHrs ,  Issue : data.Issue ,  FailureType : data.FailureType , 
     //   RCA : data.RCA ,  Resolutionowner : data.Resolutionowner ,  ResolutionownerId : data.ResolutionownerId ,  RCAValidator : data.RCAValidator ,  
@@ -26,20 +27,28 @@ function Workdetails() {
       // RCAValidatorId : data.RCAValidatorId ,  Finalapprover : data.Finalapprover ,  FinalapproverId : data.FinalapproverId , 
       // Creator : data.Creator ,  CreatorId : data.CreatorId ,  created : data.created})
       // dispatch(updateSingleTask(id,credentials.action,credentials.causes,credentials.issuecat,credentials.lts,credentials.rcauses,credentials.vrcauses));
+   
       dispatch(updateSingleTask(credentials));
+     
     console.log(credentials)
+    // let work = document.getElementById("work");
+    // work.style.display ="none";
+    setdone(true);
       
     
   }
   useEffect(() => {
     dispatch(getSingleTask(id));
-   
+
     // dispatch(getSingleNcrData(id));
-  }, []);
+  },[handleSubmit]);
+  
   const { singleData } = useSelector((state) => state.taskReducer);
   const data = { ...singleData };
   console.log("this is task data")
   console.log(data);
+console.log("contentment acton is")
+console.log(data.ContainmentAction)
   const [credentials, setCredentials] = useState({   ContainmentAction:"",Causes:"",RootCause:"",VerifiedCause:"",IssueCatogorization:"",SolutionIdentified:""})
   // const [credentials, setCredentials] = useState({ Id : 34 ,  Type : data.Type ,  Problem : data.Problem ,
   //     ProcessStage : data.ProcessStage ,  PartNo : data.PartNo ,  ReworkHrs : data.ReworkHrs ,  Issue : data.Issue ,  FailureType : data.FailureType , 
@@ -104,7 +113,7 @@ function Workdetails() {
   return (
   <div >
            <Typography gutterBottom variant="h6" component="div">
-            Resolution Owner Approver for {data.Id}
+         Resolution Owner Approver for {data.Id}   
           </Typography>
         
         <Divider sx={{ borderWidth: "1px", borderColor: "black" }} />
@@ -183,8 +192,8 @@ function Workdetails() {
 
  
 
-
-    <div style={{ borderLeft: '2px solid black', height: '100', marginLeft: '5rem', position:'absolute',top:'10px',  left: '681px'}}>
+      {!done && data.ContainmentAction === ""? 
+   <div id = "work"style={{ borderLeft: '2px solid black', height: '100', marginLeft: '5rem', position:'absolute',top:'10px',  left: '681px'}}>
           <div style={{ marginLeft: '1.5rem' }}>
             <Typography fontWeight={600} gutterBottom variant="h9" component="div">
             Containment action 
@@ -237,13 +246,57 @@ function Workdetails() {
              <div style={{ display: "flex",justifyContent:'right'}}>
               <button className="bst-btn-delete">Reject
               </button>
-              <button className="bst-btn-update" onClick={() => handleSubmit(data.Id)} >Approve
+              <button className="bst-btn-update" onClick={ handleSubmit} >Accept
               </button>
             </div>
 </div>
 
 </div>
+:<div style={{display:"flex" ,alignItems:"start" ,position:"absolute",left: "900px" ,flexDirection:"column" ,width:"400px"}}>
+  <b style={{fontSize:"20px"}}>Your work on this task</b>
+ <div className="label-value">
+        <span className="label">  Containment action </span>
+        <span className="value">{data.ContainmentAction}</span>
+      </div>
+      <div className="label-value">
+        <span className="label">Causes:</span>
+        <span className="value">{data.Causes}</span>
+      </div>
+      <div className="label-value">
+        <span className="label">Problem:</span>
+        <span className="value">{data.Problem}</span>
+      </div>
+      <div className="label-value">
+        <span className="label">ProcessStage:</span>
+        <span className="value">{data.ProcessStage}</span>
+      </div>
+      <div className="label-value">
+        <span className="label">RootCause:</span>
+        <span className="value">{data.RootCause}</span>
+      </div>
+      <div className="label-value">
+        <span className="label">ReworkHrs:</span>
+        <span className="value">{data.ReworkHrs}</span>
+      </div>
+      <div className="label-value">
+        <span className="label">VerifiedCause:</span>
+        <span className="value">{data.VerifiedCause}</span>
+      </div>
+      <div className="label-value">
+        <span className="label">FailureType:</span>
+        <span className="value">{data.FailureType}</span>
+      </div>
+      <div className="label-value">
+        <span className="label">IssueCatogorization:</span>
+        <span className="value">{data.IssueCatogorization}</span>
+      </div>
+      <div className="label-value">
+        <span className="label">SolutionIdentified:</span>
+        <span className="value">{data.SolutionIdentified}</span>
+      </div>
 
+</div>
+}
 </div>
 
 

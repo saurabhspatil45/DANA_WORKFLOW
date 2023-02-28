@@ -33,7 +33,7 @@ import Ncrmain from "../Pages/Ncrmain"
 import Profile from "../User/Profile"
 import { getSearch2 } from "../../services/userServices";
 import { faL } from '@fortawesome/free-solid-svg-icons';
-
+import Workdetailsmain from '../Pages/Workdetailsmain';
 const drawerWidth = 250;
 
 const StyledAccount = styled('div')(({ theme }) => ({
@@ -60,7 +60,7 @@ export default function PermanentDrawerLeft() {
   const [ncr, setNCR] = useState(false);
   const [user, setUser] = useState(false);
   const [profile, setProfile] = useState(false);
-
+  const [workdetails, setworkdetails] = useState(false);
   const [open, setOpen] = React.useState(false);
 
   const [hbold, setH] = useState(true); 
@@ -85,7 +85,9 @@ export default function PermanentDrawerLeft() {
   const handleClick = () => {
     setOpen(!open);
   };
-
+const workdetailsb =()=> {
+  setworkdetails(true);
+}
   const createNCR = () => {
     // window.location.href = "/createncr"
     setHome(false)
@@ -293,6 +295,7 @@ export default function PermanentDrawerLeft() {
         {user ? <ManageUser></ManageUser> : ("")}
         {obs ? <Observation></Observation> : ("")}
         {ncr ? <Ncrmain></Ncrmain> : ("")}
+        {workdetails ? <Workdetailsmain workdetailsb={workdetailsb}></Workdetailsmain> : ("")}
         {profile ? <Profile></Profile> : ("")}
       </Box>
     );

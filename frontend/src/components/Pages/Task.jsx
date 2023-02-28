@@ -20,32 +20,36 @@ import { getSingleNcrData } from "../../services/ncrServices";
 
 import TaskModal from "../Modals/TaskModal";
 import { Avatar } from "@mui/material";
+import Workdetails from "./Workdetails";
 const Task = () => {
     let navigate = useNavigate();
     const [page, setPage] = useState(1);
     const [modal1, setModal] = useState(false);
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
-
+const [tableorwork, settableorwork] = useState(true);
     const isMenuOpen = Boolean(anchorEl);
     const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
     const { loading, data,skipCount } = useSelector(
         (state) => state.taskObjectReducer
     );
-   
+   console.log("this is validator task section")
+   console.log(data)
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(getAllTaskObject(localStorage.getItem("username")));
     }, [page]);
 
     const openIssue = (param1) => {
-        localStorage.setItem("workId",param1);
-        console.log(param1)
-        if (param1) {
-            navigate('/workdetails')
+        // localStorage.setItem("workId",param1);
+        // console.log(param1)
+        // if (param1) {
+        //     navigate('/workdetails')
             
-        }
+        // }
+        settableorwork(false);
+        
     };
 
 
@@ -210,7 +214,8 @@ const Task = () => {
                     {renderMobileMenu}
                     {renderMenu}
                 </Box>
-                <div>
+               {tableorwork?
+                <div >
                     <table style={{ marginTop: '150px' }}>
                         <tr>
                             <th>S.No</th>
@@ -257,6 +262,7 @@ const Task = () => {
                         <div></div>
                     )}
                 </div>
+                :<Workdetails/>} 
             </div>
         )
     }
