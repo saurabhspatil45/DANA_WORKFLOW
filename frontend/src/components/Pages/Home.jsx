@@ -12,7 +12,7 @@ import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import MailIcon from '@mui/icons-material/Mail';
 import { Avatar } from "@mui/material";
-
+import Dashboard from '../User/Dashboard'
 const Home = () => {
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
@@ -115,7 +115,7 @@ const Home = () => {
     );
     return (
         <div>
-            <Box sx={{ flexGrow: 1 }}>
+            {/* <Box sx={{ flexGrow: 1 }}>
                 <AppBar style={{ height: '90px' }}>
                     <Toolbar style={{ marginLeft: '200px' }}>
                         <Avatar src="/profile.png" />
@@ -161,7 +161,8 @@ const Home = () => {
                 </AppBar>
                 {renderMobileMenu}
                 {renderMenu}
-            </Box>
+            </Box> */}
+            <Dashboard/>
             <h1 style={{ marginTop: '100px' }}>Home</h1>
             
         </div>

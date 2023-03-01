@@ -14,7 +14,7 @@ import MoreIcon from '@mui/icons-material/MoreVert';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import MailIcon from '@mui/icons-material/Mail';
-
+import Dashboard from '../User/Dashboard'
 const Observation = () => {
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
@@ -117,7 +117,7 @@ const Observation = () => {
     );
     return (
         <div>
-            <Box sx={{ flexGrow: 1 }}>
+            {/* <Box sx={{ flexGrow: 1 }}>
                 <AppBar style={{ height: '90px' }}>
                     <Toolbar style={{ marginLeft: '200px' }}>
                         <Avatar src="/profile.png" />
@@ -161,13 +161,15 @@ const Observation = () => {
                         </Box>
                     </Toolbar>
                 </AppBar>
-                {renderMobileMenu}
-                {renderMenu}
-            </Box>
+               {renderMobileMenu}
+                {renderMenu} 
+            </Box> */}
+                <Dashboard/>
             <div style={{ marginTop: '90px' }}>
-            </div>
-            <CustomizedDialogs />
+             <CustomizedDialogs />
             <Table />
+            </div>
+           
         </div>
     )
 }
