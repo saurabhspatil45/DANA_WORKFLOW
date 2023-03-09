@@ -12,7 +12,7 @@ import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
 import MailIcon from "@mui/icons-material/Mail";
 import { Avatar } from "@mui/material";
-import Dashboard from "../User/Dashboard";
+import Dashboard from "./Dashboard";
 
 const Home = () => {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -115,65 +115,65 @@ const Home = () => {
     </Menu>
   );
   return (
-    <div
-      style={{
-        alignContent: "left",
-        width: "80%",
-        position: "relative",
-
-        left: "250px",
-      }}
-    >
+    <div>
       {/*
-            <Box sx={{ flexGrow: 1 }}>
-                <AppBar style={{ height: '90px' }}>
-                    <Toolbar style={{ marginLeft: '200px' }}>
-                        <Avatar src="/profile.png" />
-                        <Typography variant="h6" sx={{ color: 'text.white', fontWeight: '600',marginLeft:'10px' }}>
-                            {localStorage.getItem("fname")+" "+localStorage.getItem("lname")}
-                        </Typography>
-                        <Box sx={{ flexGrow: 1 }} />
-                        <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-                            <IconButton
-                                size="large"
-                                aria-label="show 17 new notifications"
-                                color="inherit"
-                            >
-                                <Badge badgeContent={17} color="error">
-                                    <NotificationsIcon />
-                                </Badge>
-                            </IconButton>
-                            <IconButton
-                                size="large"
-                                edge="end"
-                                aria-label="account of current user"
-                                aria-controls={menuId}
-                                aria-haspopup="true"
-                                onClick={handleProfileMenuOpen}
-                                color="inherit"
-                            >
-                                <AccountCircle />
-                            </IconButton>
-                        </Box>
-                        <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
-                            <IconButton
-                                size="large"
-                                aria-label="show more"
-                                aria-controls={mobileMenuId}
-                                aria-haspopup="true"
-                                onClick={handleMobileMenuOpen}
-                                color="inherit"
-                            >
-                                <MoreIcon />
-                            </IconButton>
-                        </Box>
-                    </Toolbar>
-                </AppBar>
-                {renderMobileMenu}
-                {renderMenu}
+      <Box sx={{ flexGrow: 1 }}>
+        <AppBar style={{ height: "90px" }}>
+          <Toolbar style={{ marginLeft: "200px" }}>
+            <Avatar src="/profile.png" />
+            <Typography
+              variant="h6"
+              sx={{
+                color: "text.white",
+                fontWeight: "600",
+                marginLeft: "10px",
+              }}
+            >
+              {localStorage.getItem("fname") +
+                " " +
+                localStorage.getItem("lname")}
+            </Typography>
+            <Box sx={{ flexGrow: 1 }} />
+            <Box sx={{ display: { xs: "none", md: "flex" } }}>
+              <IconButton
+                size="large"
+                aria-label="show 17 new notifications"
+                color="inherit"
+              >
+                <Badge badgeContent={17} color="error">
+                  <NotificationsIcon />
+                </Badge>
+              </IconButton>
+              <IconButton
+                size="large"
+                edge="end"
+                aria-label="account of current user"
+                aria-controls={menuId}
+                aria-haspopup="true"
+                onClick={handleProfileMenuOpen}
+                color="inherit"
+              >
+                <AccountCircle />
+              </IconButton>
             </Box>
-            */}
-
+            <Box sx={{ display: { xs: "flex", md: "none" } }}>
+              <IconButton
+                size="large"
+                aria-label="show more"
+                aria-controls={mobileMenuId}
+                aria-haspopup="true"
+                onClick={handleMobileMenuOpen}
+                color="inherit"
+              >
+                <MoreIcon />
+              </IconButton>
+            </Box>
+          </Toolbar>
+        </AppBar>
+        {renderMobileMenu}
+        {renderMenu}
+      </Box>*/}
+      <Dashboard />
       <h1 style={{ marginTop: "100px" }}>Home</h1>
     </div>
   );
