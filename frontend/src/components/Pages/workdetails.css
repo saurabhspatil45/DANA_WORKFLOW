@@ -3,7 +3,8 @@
     display: flex;
     position: relative;
     flex-direction: column;
-    top:95px;
+    top: 127px;
+    left: 247px;
     height: 900px;
     align-items: start;
     justify-content: center;

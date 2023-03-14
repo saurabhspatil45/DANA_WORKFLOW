@@ -14,11 +14,12 @@ import TaskPage from "./components/Pages/Task";
 import Ncrmain from "./components/Pages/Ncrmain";
 import ManageUser from "./components/User/ManageUser";
 import NavigationBar from "./components/User/Dashboard";
+// import NcrDetails from "./components/Pages/NcrDetails";
 import NcrDetails from "./components/Pages/NcrDetails";
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
-      <NavigationBar />
+ <NavigationBar />
       <Routes>
         <Route path="/" element={<Login />}></Route>
         <Route path="app" element={<App />}></Route>
@@ -28,7 +29,7 @@ ReactDOM.render(
         <Route path="/Task" element={<TaskPage />} />
         <Route path="/Users" element={<ManageUser />} />
         <Route path="/Profile" element={<Profile />} />
-        <Route path="/ncrdetails" element={<NcrDetails />}></Route>
+        {/* <Route path="/ncrdetails" element={<NcrDetails />}></Route> */}
         <Route
           path="userregistration"
           element={<Protected Component={UserRegistration} />}

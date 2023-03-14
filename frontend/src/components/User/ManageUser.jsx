@@ -205,6 +205,7 @@ const ManageUser = () => {
     setPage(value);
   };
   useEffect(() => {
+    
     dispatch(GetAllUser(page));
     // dispatch(getSearch("Rahul"));
   }, [page]);

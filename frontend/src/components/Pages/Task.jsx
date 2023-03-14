@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Navigate, useNavigate } from "react-router-dom";
-import IconButton from "@mui/material/IconButton";
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
+import { useNavigate } from 'react-router-dom';
+import IconButton from '@mui/material/IconButton';
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import Toolbar from '@mui/material/Toolbar';
 import Pagination from "@mui/material/Pagination";
 import Typography from '@mui/material/Typography';
 import Badge from '@mui/material/Badge';
@@ -20,26 +20,26 @@ import { getSingleNcrData } from "../../services/ncrServices";
 
 import TaskModal from "../Modals/TaskModal";
 import { Avatar } from "@mui/material";
-import { getAllTask, getSingleTask } from "../../services/taskService";
 import Workdetails from "./Workdetails";
 const Task = () => {
     let navigate = useNavigate();
-  const [page, setPage] = useState(1);
-  const [modal1, setModal] = useState(false);
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
-const [tableorwork, settableorwork] = useState(true);  const isMenuOpen = Boolean(anchorEl);
-  const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+    const [page, setPage] = useState(1);
+    const [modal1, setModal] = useState(false);
+    const [anchorEl, setAnchorEl] = React.useState(null);
+    const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
+const [tableorwork, settableorwork] = useState(true);
+    const isMenuOpen = Boolean(anchorEl);
+    const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
-  const { loading, data,skipCount } = useSelector(
-    (state) => state.taskReducer
-  );
+    const { loading, data,skipCount } = useSelector(
+        (state) => state.taskObjectReducer
+    );
    console.log("this is validator task section")
    console.log(data)
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(getAllTask(localStorage.getItem("username")));
-  }, [page]);
+    const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(getAllTaskObject(localStorage.getItem("username")));
+    }, [page]);
 
     const openIssue = (param1) => {
         // localStorage.setItem("workId",param1);
@@ -63,48 +63,48 @@ const [tableorwork, settableorwork] = useState(true);  const isMenuOpen = Boolea
         setModal(true);
     };
 
-  const handleProfileMenuOpen = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
+    const handleProfileMenuOpen = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
 
-  const handleMobileMenuClose = () => {
-    setMobileMoreAnchorEl(null);
-  };
+    const handleMobileMenuClose = () => {
+        setMobileMoreAnchorEl(null);
+    };
 
-  const handleMenuClose = () => {
-    setAnchorEl(null);
-    handleMobileMenuClose();
-  };
+    const handleMenuClose = () => {
+        setAnchorEl(null);
+        handleMobileMenuClose();
+    };
 
-  const handleMobileMenuOpen = (event) => {
-    setMobileMoreAnchorEl(event.currentTarget);
-  };
+    const handleMobileMenuOpen = (event) => {
+        setMobileMoreAnchorEl(event.currentTarget);
+    };
 
-  const openProfile = () => {
-    window.location.href = "/profile";
-  };
-  const menuId = "primary-search-account-menu";
+    const openProfile = () => {
+        window.location.href = "/profile"
+    };
+    const menuId = 'primary-search-account-menu';
 
-  const renderMenu = (
-    <Menu
-      anchorEl={anchorEl}
-      anchorOrigin={{
-        vertical: "top",
-        horizontal: "right",
-      }}
-      id={menuId}
-      keepMounted
-      transformOrigin={{
-        vertical: "top",
-        horizontal: "right",
-      }}
-      open={isMenuOpen}
-      onClose={handleMenuClose}
-    >
-      <MenuItem onClick={openProfile}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
-    </Menu>
-  );
+    const renderMenu = (
+        <Menu
+            anchorEl={anchorEl}
+            anchorOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+            }}
+            id={menuId}
+            keepMounted
+            transformOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+            }}
+            open={isMenuOpen}
+            onClose={handleMenuClose}
+        >
+            <MenuItem onClick={openProfile}>Profile</MenuItem>
+            <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+        </Menu>
+    );
 
     const mobileMenuId = 'primary-search-account-menu-mobile';
     const renderMobileMenu = (
@@ -216,9 +216,9 @@ const [tableorwork, settableorwork] = useState(true);  const isMenuOpen = Boolea
                 </Box>
                {tableorwork?
                 <div >
-                    <table style={{ marginTop: '150px' }}>
+                    <table style={{ marginTop: '150px',alignItems:"center" }}>
                         <tr>
-                            <th>S.No</th>
+                            <th style={{width:"40px"}}>S.No</th>
                             <th>Object ID</th>
                             <th>Creator</th>
                             <th>Description</th>
