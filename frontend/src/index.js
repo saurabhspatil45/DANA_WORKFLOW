@@ -18,7 +18,7 @@ import NavigationBar from "./components/User/Dashboard";
 import Dashboard from './components/User/Dashboard'
 ReactDOM.render(
   <Provider store={store}>
-    <Dashboard/>
+    {/* <Dashboard/> */}
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Login />}></Route>
