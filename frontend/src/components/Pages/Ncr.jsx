@@ -26,6 +26,7 @@ const Ncr = () => {
     // const [data, setData] = useState([]);
     const [Error, Seterror] = useState({});
     const [isSubmit, SetIsSubmit] = useState(false)
+    const [verror, setverror] = useState(false);
     // const [roid,setROId]=useState("")
     // const [rcavid,setVId]=useState("")
     // const [rcaid,setAId]=useState("")
@@ -119,11 +120,13 @@ const Ncr = () => {
         }
     }
     const submitHandler = (event) => {
-
-        Seterror(validate(Ncr))
+if (!verror) {
+      Seterror(validate(Ncr))
         SetIsSubmit(true)
         dispatch(PostNcrdata(Ncr))
         console.log(Ncr)
+}
+      
 
         // window.location.href = "/createncr"
     }
@@ -140,48 +143,62 @@ const Ncr = () => {
         const errors = {}
 
         if (value.Type === "") {
+            setverror(true);
             errors.Type = "Type is required!"
         }
         if (value.Problem === "") {
+            setverror(true);
             errors.Problem = "Problem is required!"
         }
         if (value.ProcessStage === "") {
+            setverror(true);
             errors.ProcessStage = "ProcessStage is required!"
         }
         if (value.Issue === "") {
+            setverror(true);
             errors.Issue = "Issue description is required!"
         }
         if (value.FailureType === "") {
+            setverror(true);
             errors.FailureType = "FailureType is required!"
         }
         if (value.PartNo === "") {
+            setverror(true);
             errors.PartNo = "Part No is required!"
         }
         if (value.ReworkHrs === "") {
+            setverror(true);
             errors.ReworkHrs = "Reworks hour is required!"
         }
         if (value.RCA === "") {
+            setverror(true);
             errors.RCA = "RCA is required!"
         }
         if (value.Resolutionowner === "") {
+            setverror(true);
             errors.Resolutionowner = "Resolution owner must be selected!"
         }
         if (value.RCAValidator === "") {
+            setverror(true);
             errors.RCAValidator = "Rca validator is required!"
         }
         if (value.Finalapprover === "") {
+            setverror(true);
             errors.Finalapprover = "Approver is required!"
         }
 
         if (value.ResolutionownerId ===value.RCAValidatorId ) {
+            setverror(true);
             errors.Resolutionowner = "Resolution owner and Validator cannot be Same!"
             errors.RCAValidator = "Resolution owner and Validator cannot be Same!"
         }
         if (value.ResolutionownerId ===value.FinalapproverId ) {
+            setverror(true);
             errors.Resolutionowner = "Resolution owner and Approver cannot be Same!"
             errors.Finalapprover = "Resolution owner and Approver cannot be Same!"
         }
         if (value.RCAValidatorId ===value.FinalapproverId ) {
+            setverror(true);
             errors.Finalapprover = "Approver and Validator cannot be Same!"
             errors.RCAValidator = "Approver and Validator cannot be Same!"
         }
