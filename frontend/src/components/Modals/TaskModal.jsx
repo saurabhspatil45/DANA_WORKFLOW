@@ -16,10 +16,19 @@ import './Modals.css'
   
   }
 
+  const { loading, data2 } = useSelector((state) => state.NcrReducer);
+
+  //   console.log("here is taskdata")
+  //   console.log(singleData)
+  //   console.log(singleData.message)
+
+  // console.log("here is singleNcr")
+  // const Id = {...data2[0]}
+  // console.log(Id.Id)
+
   // let navigate = useNavigate();
   return (
     <div id="myModal" className="modal">
-       {console.log(taskdata)}
       <div className="modal-content">
         <span
           className="close"
@@ -29,53 +38,109 @@ import './Modals.css'
         >
           &times;
         </span>
-        <div style={{ display: 'flex', alignItem: 'center', justifyContent: 'center', marginTop: '2rem' }}>
+        <div
+          style={{
+            display: "flex",
+            alignItem: "center",
+            justifyContent: "center",
+            marginTop: "2rem",
+          }}
+        >
           <Typography gutterBottom variant="h6" component="div">
             Resolution Owner Approver for {taskdata.data.Id}
           </Typography>
         </div>
-        <Divider sx={{ borderWidth: '1px', borderColor: 'black' }} />
-        <div style={{ display: 'flex', marginTop: '2rem' }}>
+        <Divider sx={{ borderWidth: "1px", borderColor: "black" }} />
+        <div style={{ display: "flex", marginTop: "2rem" }}>
           <div>
-            <div style={{ display: 'flex' }}>
-              <Typography fontWeight={600} gutterBottom variant="h9" component="div">
+            <div style={{ display: "flex" }}>
+              <Typography
+                fontWeight={600}
+                gutterBottom
+                variant="h9"
+                component="div"
+              >
                 Object ID:
               </Typography>
-              <Typography marginLeft={'4.2rem'} gutterBottom variant="h9" component="div" color={'blue'} style={{ cursor: 'pointer' }}>
+              <Typography
+                marginLeft={"4.2rem"}
+                gutterBottom
+                variant="h9"
+                component="div"
+                color={"blue"}
+                style={{ cursor: "pointer" }}
+              >
                 {taskdata.data.Id}
               </Typography>
             </div>
-            <div style={{ display: 'flex' }}>
-              <Typography fontWeight={600} gutterBottom variant="h9" component="div">
-                Type :
+            <div style={{ display: "flex" }}>
+              <Typography
+                fontWeight={600}
+                gutterBottom
+                variant="h9"
+                component="div"
+              >
+                Assigned Date:
               </Typography>
               <Typography marginLeft={'4.8rem'} gutterBottom variant="h9" component="div">
               {taskdata.data.Type}
               </Typography>
             </div>
-            <div style={{ display: 'flex' }}>
-              <Typography fontWeight={600} gutterBottom variant="h9" component="div">
+            <div style={{ display: "flex" }}>
+              <Typography
+                fontWeight={600}
+                gutterBottom
+                variant="h9"
+                component="div"
+              >
                 Creator:
               </Typography>
-              <Typography marginLeft={'4.8rem'} gutterBottom variant="h9" component="div">
-              {taskdata.data.Creator}
+              <Typography
+                marginLeft={"4.8rem"}
+                gutterBottom
+                variant="h9"
+                component="div"
+              >
+                {taskdata.data.Creator}
               </Typography>
             </div>
-            <div style={{ display: 'flex' }}>
-              <Typography fontWeight={600} gutterBottom variant="h9" component="div">
+            <div style={{ display: "flex" }}>
+              <Typography
+                fontWeight={600}
+                gutterBottom
+                variant="h9"
+                component="div"
+              >
                 Created on:
               </Typography>
-              <Typography marginLeft={'3rem'} gutterBottom variant="h9" component="div">
-              {taskdata.data.created}
+              <Typography
+                marginLeft={"3rem"}
+                gutterBottom
+                variant="h9"
+                component="div"
+              >
+                {taskdata.data.created.substring(0, 10)}
               </Typography>
             </div>
-            <div style={{ display: 'flex' }}>
-              <Typography fontWeight={600} gutterBottom variant="h9" component="div">
+            <div style={{ display: "flex" }}>
+              <Typography
+                fontWeight={600}
+                gutterBottom
+                variant="h9"
+                component="div"
+              >
                 Task Details:
               </Typography>
-              <Typography marginLeft={'2.5rem'} gutterBottom variant="h9" component="div">
-              {taskdata.data.Issue}
+              <Typography
+                marginLeft={"2.5rem"}
+                gutterBottom
+                variant="h9"
+                component="div"
+              >
+                {taskdata.data.Issue}
               </Typography>
+
+              {loading}
             </div>
             
           </div>
@@ -125,7 +190,7 @@ import './Modals.css'
              Long term solution identified 
             </Typography>
             <textarea
-              style={{ width: "400px", minHeight: '100px',padding:'10px'}}
+              style={{ width: "400px", minHeight: "100px", padding: "10px" }}
               type="text"
               placeholder="Comment"
              ></textarea>
@@ -135,11 +200,11 @@ import './Modals.css'
               <button className="bst-btn-update" onClick={modelClose} >Approve
               </button>
             </div>
-
           </div>
-        </div >
-      </div >
-    </div >
+       
+        </div>
+      </div>
+    </div>
   );
 };
 

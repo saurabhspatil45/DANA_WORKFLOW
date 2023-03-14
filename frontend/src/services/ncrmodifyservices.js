@@ -5,7 +5,7 @@ import axios from 'axios'
 
 export const PostNcrModify = createAsyncThunk('NCRModify/post',
   async (data) => {
-    await axios.post('/api/postncrmodify', { data })
+    await axios.post('http://localhost:3001/api/postncrmodify', { data })
   })
 
   const initialState = {

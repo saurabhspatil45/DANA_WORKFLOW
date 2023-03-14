@@ -1,7 +1,11 @@
 {
   "name": "menu",
   "version": "0.1.0",
-  "proxy": "http://localhost:3001",
+  "proxy": {
+    "/auth/google": {
+      "target": "127.0.0.1:3001"
+    }
+  },
   "private": true,
   "dependencies": {
     "@emailjs/browser": "^3.10.0",
@@ -22,6 +26,10 @@
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
+    "@types/jest": "^29.4.0",
+    "@types/node": "^18.14.2",
+    "@types/react": "^17.0.53",
+    "@types/react-dom": "^18.0.11",
     "axios": "^0.27.2",
     "bootstrap": "^5.2.3",
     "jsonwebtoken": "^8.5.1",

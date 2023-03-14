@@ -5,18 +5,18 @@ import axios from 'axios'
 
 export const PostNcrOptiondata = createAsyncThunk('ncroption/post',
     async (data) => {
-    await axios.post('/api/createncroption',{data})
+    await axios.post('http://localhost:3001/api/createncroption',{data})
 })
 
 //Get All Ncr Data
 export const GetAllNcrOptionsData = createAsyncThunk('/getncroption/get', async () => {
-    const { data } = await axios.get('api/getncroption')
+    const { data } = await axios.get('http://localhost:3001/api/getncroption')
     console.log(data)
     return data
   })
 
   export const GetAllNcrOptionsData2 = createAsyncThunk('/getncroption2/get', async () => {
-    const { data } = await axios.get('api/getncroption2')
+    const { data } = await axios.get('http://localhost:3001/api/getncroption2')
     console.log(data)
     return data
   })

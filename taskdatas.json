@@ -1,0 +1,38 @@
+[{
+  "_id": {
+    "$oid": "63ea3818b0387c49a6c0beee"
+  },
+  "Id": "2023-02-13T12:15:09.889Z",
+  "Type": "Brake",
+  "Problem": "Slip",
+  "ProcessStage": "Xylo",
+  "PartNo": "Team center",
+  "ReworkHrs": "45",
+  "Issue": "issue1",
+  "FailureType": "Not working properly",
+  "RCA": "Yes",
+  "Resolutionowner": "ruturaj purohit",
+  "ResolutionownerId": "ruturaj@123",
+  "RCAValidator": "ruturaj purohit",
+  "RCAValidatorId": "ruturaj@123",
+  "Finalapprover": "ruturaj purohit",
+  "FinalapproverId": "ruturaj@123",
+  "Creator": "Rahul kailash Pawar",
+  "CreatorId": "Rahul7874",
+  "created": {
+    "$date": {
+      "$numberLong": "1676292784673"
+    }
+  },
+  "ContainmentAction": "",
+  "Causes": "",
+  "RootCause": "",
+  "VerifiedCause": "",
+  "IssueCatogorization": "",
+  "SolutionIdentified": "",
+  "CreatorStatus": "NA",
+  "ROStatus": "Active",
+  "ValidatorStatus": "NA",
+  "ApproverStatus": "NA",
+  "__v": 0
+}]

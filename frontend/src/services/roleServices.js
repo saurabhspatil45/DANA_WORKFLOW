@@ -5,7 +5,7 @@ import axios from 'axios'
 
 export const PostRoleData = createAsyncThunk('Role/post',
   async (data) => {
-    await axios.post('/api/roledata', { data })
+    await axios.post('http://localhost:3001/api/roledata', { data })
   })
 
 
@@ -13,32 +13,32 @@ export const PostRoleData = createAsyncThunk('Role/post',
 
 export const RoleDeletedata = createAsyncThunk('role/delete',
   async (id) => {
-    await axios.put('/api/roledatadelete', { id })
+    await axios.put('http://localhost:3001/api/roledatadelete', { id })
   }
 )
 
 // read role data
 
 export const GetAllRole = createAsyncThunk("getrole", async (search) => {
-  const { data } = await axios.get(`/api/role?searchQ=${search}`);
+  const { data } = await axios.get(`http://localhost:3001/api/role?searchQ=${search}`);
   return data;
 });
 
 //Get all resolution owner
 export const GetAllRO = createAsyncThunk("getro", async (search) => {
-  const { data } = await axios.get(`/api/role/getallro?searchQ=${search}`);
+  const { data } = await axios.get(`http://localhost:3001/api/role/getallro?searchQ=${search}`);
   return data;
 });
 
 //Get all validator
 export const GetAllValidator = createAsyncThunk("getva", async (search) => {
-  const { data } = await axios.get(`/api/role/getallva?searchQ=${search}`);
+  const { data } = await axios.get(`http://localhost:3001/api/role/getallva?searchQ=${search}`);
   return data;
 });
 
 //Get all Approver
 export const GetAllApprover = createAsyncThunk("getap", async (search) => {
-  const { data } = await axios.get(`/api/role/getallap?searchQ=${search}`);
+  const { data } = await axios.get(`http://localhost:3001/api/role/getallap?searchQ=${search}`);
   return data;
 });
 

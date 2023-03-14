@@ -6,7 +6,7 @@ import axios from 'axios'
 
 export const Postobsfinaldata = createAsyncThunk('ncr/post',
     async (dataf) => {
-    await axios.post('/api/finalobs',{dataf})
+    await axios.post('http://localhost:3001/api/finalobs',{dataf})
 })
 
 

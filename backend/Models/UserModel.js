@@ -12,6 +12,7 @@ const UserSchema = mongoose.Schema({
     isAdmin:{type:Boolean,default:false},
 })
 
-const userData = mongoose.model('userdatas', UserSchema)
+const Userdata = mongoose.model('userdata', UserSchema)
 
-export default userData
+export default Userdata
+

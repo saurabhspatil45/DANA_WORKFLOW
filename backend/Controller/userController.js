@@ -1,12 +1,12 @@
 import expressAsyncHandler from "express-async-handler";
 import bcrypt from "bcryptjs";
-import userData from "../Models/UserModel.js";
+import Userdata from "../Models/UserModel.js";
 import jwt from "jsonwebtoken";
 
 export const userRegisterController = expressAsyncHandler(async (req, res) => {
   const { fname,lname,username,eid,email,mobno,password,location,isAdmin} = req.body.data;
   try {
-    await userData.create({ fname,lname,username,eid,email,mobno,password,location,isAdmin});
+    await Userdata.create({ fname,lname,username,eid,email,mobno,password,location,isAdmin});
 
     return res.status(201).json({ message: "user created Successfully" });
   } catch (error) {
@@ -17,10 +17,10 @@ export const userRegisterController = expressAsyncHandler(async (req, res) => {
 // login controller
 
 export const LoginController = expressAsyncHandler(async (req, res) => {
-  console.log(req.body);
   const { username, password} = req.body.username;
-
-  const user = await userData.findOne({ username,password});
+  console.log("body niw is "+ username);
+console.log("request reached")
+  const user = await Userdata.findOne({ username,password});
 try {
   const token = jwt.sign(
     {
@@ -40,7 +40,7 @@ try {
 
 export const GetAllUsers = expressAsyncHandler(async (req, res) => {
   try {
-    const data = await userData.find({});
+    const data = await Userdata.find({});
     if (data) {
       return res.status(200).json({ message: "User Found", data });
     }
@@ -59,7 +59,7 @@ export const UpdateUserData = expressAsyncHandler(async (req, res) => {
     try {
        
         if (id) {
-            const data = await userData.findByIdAndUpdate(id, { fname,lname,username,eid,email,mobno,password,location }, { new: true })
+            const data = await Userdata.findByIdAndUpdate(id, { fname,lname,username,eid,email,mobno,password,location }, { new: true })
             
             if(data){
                 return res.status(201).json({message:"successfully updated",data})
@@ -79,7 +79,7 @@ export const UserSingle = expressAsyncHandler(async (req, res) => {
     const singleid = req.params.id
 console.log(singleid)
     try {
-        const data = await userData.findById(singleid)
+        const data = await Userdata.findById(singleid)
         if (data) {
           return  res.status(200).json({message:"successfully found single data",data})
         }
@@ -98,7 +98,7 @@ export const userDelete = expressAsyncHandler(async (req, res) => {
     const deleteid = await req.body.id
         
         if (deleteid) {
-            const data = await userData.findByIdAndDelete(deleteid)
+            const data = await Userdata.findByIdAndDelete(deleteid)
             if (data) {
                 return res.status(201).json({message:"data successfully deleted",data})
         }
@@ -115,7 +115,7 @@ export const userDelete = expressAsyncHandler(async (req, res) => {
 
 export const getSearch = expressAsyncHandler(async (req, res) => {
   try {
-      const data = await userData.find({ $or: [{ username: { '$regex': req.query.searchQ } }, { email: { '$regex': req.query.searchQ } }, { fname: { '$regex': req.query.searchQ } }, { eid: { '$regex': req.query.searchQ } }] })
+      const data = await Userdata.find({ $or: [{ username: { '$regex': req.query.searchQ } }, { email: { '$regex': req.query.searchQ } }, { fname: { '$regex': req.query.searchQ } }, { eid: { '$regex': req.query.searchQ } }] })
       if (data) {
           return res.status(200).json({message:true,data})
       }
@@ -126,7 +126,7 @@ export const getSearch = expressAsyncHandler(async (req, res) => {
 
 export const getSearch2 = expressAsyncHandler(async (req, res) => {
   try {
-      const data = await userData.find({ $or: [{ username: { '$regex': req.query.searchQ } }] })
+      const data = await Userdata.find({ $or: [{ username: { '$regex': req.query.searchQ } }] })
       if (data) {
           return res.status(200).json({message:true,data})
       }

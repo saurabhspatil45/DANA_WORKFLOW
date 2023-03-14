@@ -5,6 +5,7 @@ import taskObjectData from "../Models/TaskObjectModel.js";
 export const getTaskObject = expressAsyncHandler(async (req, res) => {
     try {
         const data = await taskObjectData.find({ $or: [{ ResolutionownerId: { '$regex': req.query.searchQ } },{ RCAValidatorId: { '$regex': req.query.searchQ } },{ FinalapproverId: { '$regex': req.query.searchQ } }] })
+        console.log(data)
         if (data) {
             return res.status(200).json({message:true,data})
         }

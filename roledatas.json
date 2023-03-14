@@ -1,0 +1,65 @@
+[{
+  "_id": {
+    "$oid": "63ea243888c5ff85f26d2a9f"
+  },
+  "username": "ruturaj@123",
+  "name": "ruturaj purohit",
+  "usertype": "Creator",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63ea244288c5ff85f26d2aa2"
+  },
+  "username": "ruturaj@123",
+  "name": "ruturaj purohit",
+  "usertype": "Resolution Owner",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63ea244d88c5ff85f26d2aa5"
+  },
+  "username": "ruturaj@123",
+  "name": "ruturaj purohit",
+  "usertype": "Validator",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63ea24b688c5ff85f26d2ac3"
+  },
+  "username": "ruturaj@123",
+  "name": "ruturaj purohit",
+  "usertype": "Approver",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63ea2bc6b0387c49a6c0bde8"
+  },
+  "username": "ruturaj@123",
+  "name": "ruturaj purohit",
+  "usertype": "Resolution Owner",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63ea2bc9b0387c49a6c0bdeb"
+  },
+  "username": "ruturaj@123",
+  "name": "ruturaj purohit",
+  "usertype": "Resolution Owner",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63ea2bebb0387c49a6c0bdf4"
+  },
+  "username": "Rahul7874",
+  "name": "Rahul kailash Pawar",
+  "usertype": "Resolution Owner",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63ea2befb0387c49a6c0bdf7"
+  },
+  "username": "Rahul7874",
+  "name": "Rahul kailash Pawar",
+  "usertype": "Resolution Owner",
+  "__v": 0
+}]

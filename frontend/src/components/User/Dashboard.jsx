@@ -132,7 +132,7 @@ const data = [
   {
     text: "Home",
     path: "/Home",
-    icon: <HomeOutlined />,
+    icon: <HomeOutlined />
   },
   {
     text: "Product",
@@ -141,31 +141,33 @@ const data = [
       {
         text: "NCR",
         path: "/NCR",
-        icon: <AddIcon />,
+        icon: <AddIcon />
       },
       {
         text: "Observation",
         path: "/Observation",
-        icon: <AddIcon />,
-      },
-    ],
+        icon: <AddIcon />
+      }
+    ]
   },
   {
     text: "Task",
     path: "/Task",
-    icon: <WorkOutline />,
+    icon: <WorkOutline />
   },
   {
     text: "Users",
     path: "/Users",
-    icon: <PeopleOutlined />,
+    icon: <PeopleOutlined />
   },
   {
     text: "Profile",
     path: "/Profile",
-    icon: <PersonOutlined />,
-  },
+    icon: <PersonOutlined />
+  }
 ];
+
+
 
 function NavigationBar() {
   const classes = useStyles();

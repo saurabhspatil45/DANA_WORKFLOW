@@ -6,48 +6,62 @@ import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import Pagination from "@mui/material/Pagination";
-import Typography from "@mui/material/Typography";
-import Badge from "@mui/material/Badge";
-import AccountCircle from "@mui/icons-material/AccountCircle";
-import NotificationsIcon from "@mui/icons-material/Notifications";
-import MoreIcon from "@mui/icons-material/MoreVert";
-import MenuItem from "@mui/material/MenuItem";
-import Menu from "@mui/material/Menu";
-import MailIcon from "@mui/icons-material/Mail";
-// import { getAllTask,getSingleTask } from '../../services/taskService'
-import {
-  getAllTaskObject,
-  getSingleTaskObject,
-} from "../../services/TaskObjectServices";
+import Typography from '@mui/material/Typography';
+import Badge from '@mui/material/Badge';
+import AccountCircle from '@mui/icons-material/AccountCircle';
+import NotificationsIcon from '@mui/icons-material/Notifications';
+import MoreIcon from '@mui/icons-material/MoreVert';
+import MenuItem from '@mui/material/MenuItem';
+import Menu from '@mui/material/Menu';
+import MailIcon from '@mui/icons-material/Mail';
+import { getAllTask,getSingleTask } from '../../services/taskService'
+import { getAllTaskObject,getSingleTaskObject } from '../../services/TaskObjectServices'
+import { getSingleNcrData } from "../../services/ncrServices";
+
 import TaskModal from "../Modals/TaskModal";
 import { Avatar } from "@mui/material";
 import { getAllTask, getSingleTask } from "../../services/taskService";
-
+import Workdetails from "./Workdetails";
 const Task = () => {
+    let navigate = useNavigate();
   const [page, setPage] = useState(1);
   const [modal1, setModal] = useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
-  const isMenuOpen = Boolean(anchorEl);
+const [tableorwork, settableorwork] = useState(true);  const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
-  const { loading, data, skipCount } = useSelector(
+  const { loading, data,skipCount } = useSelector(
     (state) => state.taskReducer
   );
-
+   console.log("this is validator task section")
+   console.log(data)
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getAllTask(localStorage.getItem("username")));
   }, [page]);
 
-  const handleChange = (event, value) => {
-    setPage(value);
-  };
-  const openManageModal = (id) => {
-    dispatch(getSingleTask(id));
-    setModal(true);
-    // Navigate("/resowner")
-  };
+    const openIssue = (param1) => {
+        // localStorage.setItem("workId",param1);
+        // console.log(param1)
+        // if (param1) {
+        //     navigate('/workdetails')
+            
+        // }
+        settableorwork(false);
+        
+    };
+
+
+    const handleChange = (event, value) => {
+        setPage(value);
+    };
+    const openManageModal = (id,issue) => {
+        console.log("this is the issue"+issue)
+        dispatch(getSingleTaskObject(id));
+        dispatch(getSingleNcrData(issue))
+        setModal(true);
+    };
 
   const handleProfileMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
@@ -92,67 +106,67 @@ const Task = () => {
     </Menu>
   );
 
-  const mobileMenuId = "primary-search-account-menu-mobile";
-  const renderMobileMenu = (
-    <Menu
-      anchorEl={mobileMoreAnchorEl}
-      anchorOrigin={{
-        vertical: "top",
-        horizontal: "right",
-      }}
-      id={mobileMenuId}
-      keepMounted
-      transformOrigin={{
-        vertical: "top",
-        horizontal: "right",
-      }}
-      open={isMobileMenuOpen}
-      onClose={handleMobileMenuClose}
-    >
-      <MenuItem>
-        <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-          <Badge badgeContent={4} color="error">
-            <MailIcon />
-          </Badge>
-        </IconButton>
-        <p>Messages</p>
-      </MenuItem>
-      <MenuItem>
-        <IconButton
-          size="large"
-          aria-label="show 17 new notifications"
-          color="inherit"
+    const mobileMenuId = 'primary-search-account-menu-mobile';
+    const renderMobileMenu = (
+        <Menu
+            anchorEl={mobileMoreAnchorEl}
+            anchorOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+            }}
+            id={mobileMenuId}
+            keepMounted
+            transformOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+            }}
+            open={isMobileMenuOpen}
+            onClose={handleMobileMenuClose}
         >
-          <Badge badgeContent={17} color="error">
-            <NotificationsIcon />
-          </Badge>
-        </IconButton>
-        <p>Notifications</p>
-      </MenuItem>
-      <MenuItem onClick={handleProfileMenuOpen}>
-        <IconButton
-          size="large"
-          aria-label="account of current user"
-          aria-controls="primary-search-account-menu"
-          aria-haspopup="true"
-          color="inherit"
-        >
-          <AccountCircle />
-        </IconButton>
-        <p>Profile</p>
-      </MenuItem>
-    </Menu>
-  );
-  if (loading) {
-    return <div>Loading..</div>;
-  }
-  if (data.length == 0) {
-    // dispatch(getAllTask(localStorage.getItem("username")));
-  } else {
-    return (
-      <div>
-        {console.log(data)}
-        {/*
+            <MenuItem>
+                <IconButton size="large" aria-label="show 4 new mails" color="inherit">
+                    <Badge badgeContent={4} color="error">
+                        <MailIcon />
+                    </Badge>
+                </IconButton>
+                <p>Messages</p>
+            </MenuItem>
+            <MenuItem>
+                <IconButton
+                    size="large"
+                    aria-label="show 17 new notifications"
+                    color="inherit"
+                >
+                    <Badge badgeContent={17} color="error">
+                        <NotificationsIcon />
+                    </Badge>
+                </IconButton>
+                <p>Notifications</p>
+            </MenuItem>
+            <MenuItem onClick={handleProfileMenuOpen}>
+                <IconButton
+                    size="large"
+                    aria-label="account of current user"
+                    aria-controls="primary-search-account-menu"
+                    aria-haspopup="true"
+                    color="inherit"
+                >
+                    <AccountCircle />
+                </IconButton>
+                <p>Profile</p>
+            </MenuItem>
+        </Menu>
+    );
+    if (loading) {
+        return <div>Loading..</div>;
+    }
+    if (data.length == 0) {
+        dispatch(getAllTask(localStorage.getItem("username")));
+    }
+    else {
+        return (
+            <div >
+                {console.log(data)}
                 <Box sx={{ flexGrow: 1 }}>
                     <AppBar style={{ height: '90px' }}>
                         <Toolbar style={{ marginLeft: '200px' }}>
@@ -200,52 +214,57 @@ const Task = () => {
                     {renderMobileMenu}
                     {renderMenu}
                 </Box>
-        */}
-        <div>
-          <table
-            style={{
-              alignContent: "left",
-              width: "70%",
-              position: "relative",
-              top: "150px",
-            }}
-          >
-            <tr>
-              <th>S.No</th>
-              <th>Object ID</th>
-              <th>Creator</th>
-              <th>Description</th>
-              <th>Created on</th>
-              <th>Assigned Date</th>
-            </tr>
-            {data[0].data.map((res, index) => (
-              <React.Fragment key={res._id}>
-                {/* {res.CreatorId===localStorage.getItem("username")} */}
-                <tr>
-                  <td>{index + 1}</td>
-                  <td
-                    style={{ color: "blue", cursor: "pointer" }}
-                    onClick={() => openManageModal(res._id)}
-                  >
-                    {res._id}
-                  </td>
-                  <td>{res.Creator}</td>
-                  <td>{res.Issue}</td>
-                  <td>{res.created.substring(0, 10)}</td>
-                  {/* <td>{res.AssignedDate.substring(0,10)}</td> */}
-                </tr>
-              </React.Fragment>
-            ))}
-          </table>
-          <Pagination
-            page={page}
-            onChange={handleChange}
-            count={Math.floor(data[0].message / 50)}
-          />
-          {modal1 ? <TaskModal setModal={setModal}></TaskModal> : <div></div>}
-        </div>
-      </div>
-    );
-  }
-};
-export default Task;
+               {tableorwork?
+                <div >
+                    <table style={{ marginTop: '150px' }}>
+                        <tr>
+                            <th>S.No</th>
+                            <th>Object ID</th>
+                            <th>Creator</th>
+                            <th>Description</th>
+                            <th>Created on</th>
+                            <th>Assigned Date</th>
+                            <th>Status</th>
+                            <th>timer</th>
+                            <th>open</th>
+                        
+                        </tr>
+                        {data[0].data.map((res,index) => (
+                            <React.Fragment key={res._id}>
+                                {/* {res.CreatorId===localStorage.getItem("username")} */}
+                                <tr>
+                                    <td>{index+1}</td>
+                                    <td style={{ color: 'blue', cursor: 'pointer' }} onClick={() => openManageModal(res._id,res.Issue)} >
+                                        {res.Id}
+                                    </td>
+                                    <td>{res.Creator}</td>
+                                    <td>{res.Issue}</td>
+                                    <td>{res.created.substring(0,10)}</td>
+                                     <td>{res.AssignedDate.substring(0,10)}</td>
+                                       <td></td>
+                                       <td></td>
+                                   
+                                       <td><button onClick={() => openIssue(res.Id)}> open</button></td>
+                                </tr>
+                            </React.Fragment>
+                        ))}
+                    </table>
+                    <Pagination
+                        page={page}
+                        onChange={handleChange}
+                        count={Math.floor(data[0].message / 50)}
+                    />
+                    {modal1 ? (
+                        <TaskModal
+                            setModal={setModal}
+                        ></TaskModal>
+                    ) : (
+                        <div></div>
+                    )}
+                </div>
+                :<Workdetails/>} 
+            </div>
+        )
+    }
+}
+export default Task

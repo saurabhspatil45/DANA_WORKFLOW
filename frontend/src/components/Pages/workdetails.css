@@ -1,0 +1,35 @@
+.label-value-list {
+    padding: 16px;
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    top:95px;
+    height: 900px;
+    align-items: start;
+    justify-content: center;
+    border: 5px solid yellow;
+    border-radius: 5px;
+  }
+  
+  .label-value {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+  
+  .label {
+    font-size: 16px;
+    font-weight: bold;
+    margin-right: 10px;
+  }
+  
+  .value {
+    font-size: 16px;
+  }
+
+  .work{
+    display: flex;
+    flex-direction:column;
+  }

@@ -1,7 +1,7 @@
 import mongoose from 'mongoose'
 
 const TaskSchema = mongoose.Schema({
-    Id: { type: String,unique:true},
+    Id: { type: String},
     Type: { type: String},
     Problem: { type: String},
     ProcessStage: { type: String},

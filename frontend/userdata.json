@@ -1,0 +1,13 @@
+{
+  "_id": "1",
+    "fname": "saurabh",
+    "lname":"patil",
+    "username": "saurabh3434",
+    "eid": "12345",
+    "email":"saurabhsf@gmail.com",
+    "mobno": "1234567890",
+    "password": "123456",
+    "location":"fdslkf",
+    "isAdmin": true
+    
+  }
