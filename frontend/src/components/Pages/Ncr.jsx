@@ -120,12 +120,14 @@ const Ncr = () => {
         }
     }
     const submitHandler = (event) => {
-if (!verror) {
-      Seterror(validate(Ncr))
+       
+     console.log("submit handler is called")
+     
+
         SetIsSubmit(true)
         dispatch(PostNcrdata(Ncr))
         console.log(Ncr)
-}
+
       
 
         // window.location.href = "/createncr"
@@ -140,8 +142,8 @@ if (!verror) {
 
 
     const validate = (value) => {
-        const errors = {}
-
+        let errors = {}
+       console.log("validator is called")
         if (value.Type === "") {
             setverror(true);
             errors.Type = "Type is required!"
@@ -151,57 +153,68 @@ if (!verror) {
             errors.Problem = "Problem is required!"
         }
         if (value.ProcessStage === "") {
-            setverror(true);
+      
             errors.ProcessStage = "ProcessStage is required!"
         }
         if (value.Issue === "") {
-            setverror(true);
+        
             errors.Issue = "Issue description is required!"
         }
         if (value.FailureType === "") {
-            setverror(true);
+          
             errors.FailureType = "FailureType is required!"
         }
         if (value.PartNo === "") {
-            setverror(true);
+         
             errors.PartNo = "Part No is required!"
         }
         if (value.ReworkHrs === "") {
-            setverror(true);
+          
             errors.ReworkHrs = "Reworks hour is required!"
         }
         if (value.RCA === "") {
-            setverror(true);
+           
             errors.RCA = "RCA is required!"
         }
         if (value.Resolutionowner === "") {
-            setverror(true);
+            
             errors.Resolutionowner = "Resolution owner must be selected!"
         }
         if (value.RCAValidator === "") {
-            setverror(true);
+       
             errors.RCAValidator = "Rca validator is required!"
         }
         if (value.Finalapprover === "") {
-            setverror(true);
+        
             errors.Finalapprover = "Approver is required!"
         }
 
         if (value.ResolutionownerId ===value.RCAValidatorId ) {
-            setverror(true);
+          
             errors.Resolutionowner = "Resolution owner and Validator cannot be Same!"
             errors.RCAValidator = "Resolution owner and Validator cannot be Same!"
         }
-        if (value.ResolutionownerId ===value.FinalapproverId ) {
-            setverror(true);
+        else{
+             if (value.ResolutionownerId ===value.FinalapproverId ) {
+         
             errors.Resolutionowner = "Resolution owner and Approver cannot be Same!"
             errors.Finalapprover = "Resolution owner and Approver cannot be Same!"
         }
+        else{
+             
         if (value.RCAValidatorId ===value.FinalapproverId ) {
-            setverror(true);
+        
             errors.Finalapprover = "Approver and Validator cannot be Same!"
             errors.RCAValidator = "Approver and Validator cannot be Same!"
         }
+        else{
+
+            console.log("submitting form")
+            submitHandler();
+        }
+        }
+        }
+      
 
         return errors
 
@@ -366,7 +379,7 @@ if (!verror) {
                                         <Box sx={{ minWidth: 350, mt: 3 }}>
                                             <FormControl fullWidth>
                                                 <InputLabel variant="standard" htmlFor="uncontrolled-native" required>
-                                                    RCA Required
+                                                    RCA Required  
                                                 </InputLabel>
                                                 <NativeSelect
                                                     name="RCA"
@@ -439,7 +452,7 @@ if (!verror) {
                         </DialogContent>
                         <DialogActions>
                             <Button onClick={handleClose}>Cancel</Button>
-                            <Button onClick={submitHandler}>Create</Button>
+                            <Button onClick={()=>{Seterror(validate(Ncr))}}>Create</Button>
                         </DialogActions>
                     </form>
                 </Dialog>
