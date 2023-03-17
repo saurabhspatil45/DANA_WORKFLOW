@@ -216,9 +216,9 @@ const [tableorwork, settableorwork] = useState(true);
                 </Box>
                {tableorwork?
                 <div >
-                    <table style={{ marginTop: '150px',alignItems:"center" }}>
+                    <table style={{ marginTop: '150px' }}>
                         <tr>
-                            <th style={{width:"40px"}}>S.No</th>
+                            <th >S.No</th>
                             <th>Object ID</th>
                             <th>Creator</th>
                             <th>Description</th>

@@ -61,6 +61,7 @@ const Profile = () => {
   } else {
     data[0].data.map((res) => {
       let v1 = res.fname;
+      localStorage.setItem("fname",v1);
       list.push(v1);
       let v2 = res.username;
       list.push(v2);
@@ -69,6 +70,7 @@ const Profile = () => {
       let v4 = res.password;
       list.push(v4);
       let v5 = res.lname;
+      localStorage.setItem("lname",v5);
       list.push(v5);
       let v6 = res.eid;
       list.push(v6);

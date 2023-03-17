@@ -3,7 +3,8 @@ import mongoose from 'mongoose'
 
 const NcrModel = mongoose.Schema({
     
-    Id:{type:Date,default:Date.now()},
+    Id:{  type: Number,
+        default:0,},
     Type: { type: String, required: true },
 
     Problem: { type: String, required: true },
@@ -67,6 +68,16 @@ const NcrModel = mongoose.Schema({
     }
 })
 
+NcrModel.pre('save', async function (next) {
+    const doc = this;
+    const lastProduct = await Ncr.findOne().sort({ Id: -1 });
+    if (!lastProduct) {
+      doc.Id = 1;
+    } else {
+      doc.Id = lastProduct.Id + 1;
+    }
+    next();
+  });
 const Ncr = mongoose.model("ncrs", NcrModel);
 
 

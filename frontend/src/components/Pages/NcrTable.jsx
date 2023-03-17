@@ -345,6 +345,8 @@ const NcrTable = () => {
     ValidatorStatus,
     ApproverStatus
   ) => {
+
+    console.log("final ncr posted as task")
     dispatch(
       PostTaskData({
         Id,
@@ -377,7 +379,9 @@ const NcrTable = () => {
         ApproverStatus,
       })
     );
-    // dispatch(PostTaskDataObject({ Id, Issue,Resolutionowner, ResolutionownerId, RCAValidator, RCAValidatorId, Finalapprover, FinalapproverId, Creator, CreatorId, created, AssignedDate, CompletionDate, CreatorStatus, ROStatus, ValidatorStatus, ApproverStatus, CreatorComment, ROComment, ValidatorComment, ApproverComment }))
+    
+    dispatch(PostTaskDataObject({ Id, Issue,Resolutionowner, ResolutionownerId, RCAValidator, RCAValidatorId, Finalapprover, FinalapproverId, Creator, CreatorId, created, AssignedDate, CompletionDate, CreatorStatus, ROStatus, ValidatorStatus, ApproverStatus, CreatorComment, ROComment, ValidatorComment, ApproverComment }))
+    
     handleclosefinalAlert();
   };
   let value, value2;

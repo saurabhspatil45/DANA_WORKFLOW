@@ -5,6 +5,7 @@ import axios from 'axios'
 
 export const getAllTaskObject = createAsyncThunk("getAllTaskObject", async (search) => {
     const { data } = await axios.get(`http://localhost:3001/api/getalltaskobject?searchQ=${search}`);
+
     return data;
   });
 
@@ -20,6 +21,7 @@ export const getSingleTaskObject = createAsyncThunk(
 
 export const PostTaskDataObject = createAsyncThunk('posttaskdataobject/post',
   async (data) => {
+    console.log("posting task object")
     await axios.post('http://localhost:3001/api/posttaskobject', { data })
   })
 
