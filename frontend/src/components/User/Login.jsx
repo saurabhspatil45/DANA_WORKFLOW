@@ -45,7 +45,7 @@ const Login = () => {
           <Box
             sx={{
               minHeight: "450px",
-              marginTop: 10,
+              marginTop: 20,
               display: "flex",
               padding: "20px",
               boxShadow: "0 0px 50px 0 rgba(0,0,0,0.2)",

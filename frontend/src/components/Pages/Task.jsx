@@ -221,19 +221,38 @@ const Task = () => {
             {data[0].data.map((res, index) => (
               <React.Fragment key={res._id}>
                 {/* {res.CreatorId===localStorage.getItem("username")} */}
-                <tr>
-                  <td>{index + 1}</td>
-                  <td
-                    style={{ color: "blue", cursor: "pointer" }}
-                    onClick={() => openManageModal(res._id)}
-                  >
-                    {res._id}
-                  </td>
-                  <td>{res.Creator}</td>
-                  <td>{res.Issue}</td>
-                  <td>{res.created.substring(0, 10)}</td>
-                  {/* <td>{res.AssignedDate.substring(0,10)}</td> */}
-                </tr>
+                {localStorage.getItem("isAdmin") === "true" ? (
+                  <tr>
+                    <td>{index + 1}</td>
+                    <td
+                      style={{ color: "blue", cursor: "pointer" }}
+                      onClick={() => openManageModal(res._id)}
+                    >
+                      {res._id}
+                    </td>
+                    <td>{res.Creator}</td>
+                    <td>{res.Issue}</td>
+                    <td>{res.created.substring(0, 10)}</td>
+                    {/* <td>{res.AssignedDate.substring(0,10)}</td> */}
+                  </tr>
+                ) : localStorage.getItem("username") ===
+                  res.ResolutionownerId ? (
+                  <tr>
+                    <td>{index + 1}</td>
+                    <td
+                      style={{ color: "blue", cursor: "pointer" }}
+                      onClick={() => openManageModal(res._id)}
+                    >
+                      {res._id}
+                    </td>
+                    <td>{res.Creator}</td>
+                    <td>{res.Issue}</td>
+                    <td>{res.created.substring(0, 10)}</td>
+                    {/* <td>{res.AssignedDate.substring(0,10)}</td> */}
+                  </tr>
+                ) : (
+                  <td style={{ width: "20px" }}> </td>
+                )}
               </React.Fragment>
             ))}
           </table>

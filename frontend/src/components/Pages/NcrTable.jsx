@@ -27,6 +27,7 @@ import {
   GetAllNcrData,
   NcrDataDelete,
   UpdateNcr,
+  GetSingleNcr,
 } from "../../services/ncrServices";
 import NcrDetails from "./NcrDetails";
 import Typography from "@mui/material/Typography";
@@ -75,6 +76,38 @@ const NcrTable = () => {
 
   const [AssignedDate, setAssignedDate] = useState("");
   const [CompletionDate, setCompletionDate] = useState("");
+  const [modal1, setModal] = useState(false);
+  /*const [Task, setTask] = useState({
+    Id:"",
+    Type:"",
+    Problem:"",
+    ProcessStage:"",
+    PartNo:"",
+    ReworkHrs:"",
+    Issue:"",
+    FailureType:"",
+    RCA:"",
+    Resolutionowner:"",
+    ResolutionownerId:"",
+    RCAValidator:"",
+    RCAValidatorId:"",
+    Finalapprover:"",
+    FinalapproverId:"",
+    Creator:"",
+    CreatorId:"",
+    created:"",
+    ContainmentAction:"",
+    Causes:"",
+    RootCause:"",
+    VerifiedCause:"",
+    IssueCatogorization:"",
+    SolutionIdentified:"",
+    CreatorStatus:"",
+    ROStatus:"",
+    ValidatorStatus:"",
+    ApproverStatus:"",
+  });
+  */
 
   const { loading, data, skipCount } = useSelector((state) => state.NcrReducer);
   const { loading1, data1 } = useSelector((state) => state.roleReducer);
@@ -107,6 +140,10 @@ const NcrTable = () => {
     dispatch(NcrDataDelete(id));
     // window.location.href = "/createncr"
   };
+  /*const getncriddetails = (id) => {
+    dispatch(GetSingleNcr(id));
+    setModal(true);
+  };*/
   const getncriddetails = (
     _id,
     Id,
@@ -1266,6 +1303,11 @@ const NcrTable = () => {
             >
               Yes
             </Button>
+            {modal1 ? (
+              <NcrDetails setModal={setModal}></NcrDetails>
+            ) : (
+              <div></div>
+            )}
           </DialogActions>
         </Dialog>
       </div>

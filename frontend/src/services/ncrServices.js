@@ -14,6 +14,11 @@ export const GetAllNcrData = createAsyncThunk("/getncr/get", async () => {
   return data;
 });
 
+export const GetSingleNcr = createAsyncThunk("/getncr/get", async (id) => {
+  const { data } = await axios.get(`/api/getncr,${id}`);
+  return data;
+});
+
 // delete data
 
 export const NcrDataDelete = createAsyncThunk("ncr/delete", async (id) => {

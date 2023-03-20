@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./styles.css";
 import { makeStyles } from "@material-ui/core/styles";
+import { useSelector, useDispatch } from "react-redux";
+import { getSearch2 } from "../../services/userServices";
 import Drawer from "@material-ui/core/Drawer";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -170,11 +172,17 @@ const data = [
 function NavigationBar() {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
-
+  const [page, setPage] = useState(1);
   const [anchorEl, setAnchorEl] = useState(false);
   const isMenuOpen = Boolean(anchorEl);
 
   const [selectedItem, setSelectedItem] = useState();
+
+  const dispatch = useDispatch();
+  const { loading2, data2 } = useSelector((state) => state.userReducer);
+  useEffect(() => {
+    dispatch(getSearch2(localStorage.getItem("username")));
+  }, [page]);
 
   const handleItemClick = (item) => {
     setSelectedItem(isTemplateExpression);
@@ -194,7 +202,6 @@ function NavigationBar() {
       </Link>
     ));
   };
-
   const getList = (data) => {
     return (
       <div
@@ -261,95 +268,123 @@ function NavigationBar() {
     setAnchorEl(false);
   };
 
-  return (
-    <div className={classes.root}>
-      <CssBaseline />
-      <Drawer
-        sx={{
-          width: drawerWidth,
-          flexShrink: 0,
-          "& .MuiDrawer-paper": {
+  if (loading2) {
+    return <div>Loading..</div>;
+  } else {
+    data2[0].data.map((res) => {
+      let v1 = res.fname;
+      localStorage.setItem("fname", v1);
+      let v2 = res.username;
+      localStorage.setItem("username", v2);
+      let v3 = res.email;
+      localStorage.setItem("email", v3);
+      let v4 = res.password;
+      localStorage.setItem("password", v4);
+      let v5 = res.lname;
+      localStorage.setItem("lname", v5);
+      let v6 = res.eid;
+      localStorage.setItem("eid", v6);
+      let v7 = res.mobno;
+      localStorage.setItem("mobno", v7);
+      let v8 = res.location;
+      localStorage.setItem("location", v8);
+      let v9 = res._id;
+      localStorage.setItem("id", v9);
+    });
+    return (
+      <div className={classes.root}>
+        <CssBaseline />
+        <Drawer
+          sx={{
             width: drawerWidth,
-            boxSizing: "border-box",
-          },
-        }}
-        className={classes.drawer}
-        variant="permanent"
-        anchor="left"
-        // open={open}
-        classes={{
-          paper: classes.drawerPaper,
-        }}
-      >
-        <List>{getList(data)}</List>
-      </Drawer>
+            flexShrink: 0,
+            "& .MuiDrawer-paper": {
+              width: drawerWidth,
+              boxSizing: "border-box",
+            },
+          }}
+          className={classes.drawer}
+          variant="permanent"
+          anchor="left"
+          // open={open}
+          classes={{
+            paper: classes.drawerPaper,
+          }}
+        >
+          <List>{getList(data)}</List>
+        </Drawer>
 
-      <Divider />
-      <AppBar style={{ height: "90px" }}>
-        <Toolbar style={{ marginLeft: "200px" }}>
-          <Avatar src="/profile.png" />
-          <Typography
-            variant="h6"
-            sx={{ color: "text.white", fontWeight: "600", marginLeft: "10px" }}
-          >
-            {localStorage.getItem("fname") +
-              " " +
-              localStorage.getItem("lname")}
-          </Typography>
-          {/* Logo */}
-          <img src={logo} alt="logo" />
-          <Hidden xsDown>
-            <Box sx={{ flexGrow: 1 }} />
-            <Box sx={{ display: { xs: "none", md: "flex" } }}>
-              <IconButton
-                style={{ marginLeft: "240px" }}
-                aria-label="show new notifications"
-                color="inherit"
-              >
-                <Badge badgeContent={4} color="secondary">
-                  <NotificationsIcon />
-                </Badge>
-              </IconButton>
-              <IconButton
-                size="large"
-                edge="end"
-                aria-label="account of current user"
-                aria-controls={menuId}
-                aria-haspopup="true"
-                onClick={handleMenuOpen}
-                color="inherit"
-              >
-                <AccountCircle />
-              </IconButton>
-            </Box>
-
-            {/* NotificationIcon And profile Avatar */}
-
-            <Menu
-              id="menu-appbar"
-              anchorEl={anchorEl}
-              anchorOrigin={{
-                vertical: "top",
-                horizontal: "right",
+        <Divider />
+        <AppBar style={{ height: "90px" }}>
+          <Toolbar style={{ marginLeft: "200px" }}>
+            <Avatar src="/profile.png" />
+            <Typography
+              variant="h6"
+              sx={{
+                color: "text.white",
+                fontWeight: "600",
+                marginLeft: "10px",
               }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              open={isMenuOpen}
-              onClose={() => handleMenuClose(false)}
             >
-              <MenuItem onClick={() => handleProfileClick()}>
-                My Profile
-              </MenuItem>
-              <MenuItem onClick={() => handleLogoutClick()}>Logout</MenuItem>
-            </Menu>
-          </Hidden>
-        </Toolbar>
-      </AppBar>
-    </div>
-  );
+              {localStorage.getItem("fname") +
+                " " +
+                localStorage.getItem("lname")}
+            </Typography>
+            {/* Logo */}
+            <img src={logo} alt="logo" />
+            <Hidden xsDown>
+              <Box sx={{ flexGrow: 1 }} />
+              <Box sx={{ display: { xs: "none", md: "flex" } }}>
+                <IconButton
+                  style={{ marginLeft: "240px" }}
+                  aria-label="show new notifications"
+                  color="inherit"
+                >
+                  <Badge badgeContent={4} color="secondary">
+                    <NotificationsIcon />
+                  </Badge>
+                </IconButton>
+                <IconButton
+                  size="large"
+                  edge="end"
+                  aria-label="account of current user"
+                  aria-controls={menuId}
+                  aria-haspopup="true"
+                  onClick={handleMenuOpen}
+                  color="inherit"
+                >
+                  <AccountCircle />
+                </IconButton>
+              </Box>
+
+              {/* NotificationIcon And profile Avatar */}
+
+              <Menu
+                id="menu-appbar"
+                anchorEl={anchorEl}
+                anchorOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                open={isMenuOpen}
+                onClose={() => handleMenuClose(false)}
+              >
+                <MenuItem onClick={() => handleProfileClick()}>
+                  My Profile
+                </MenuItem>
+                <MenuItem onClick={() => handleLogoutClick()}>Logout</MenuItem>
+              </Menu>
+            </Hidden>
+          </Toolbar>
+        </AppBar>
+      </div>
+    );
+  }
 }
 
 export default NavigationBar;
