@@ -18,9 +18,12 @@ export const getTask = expressAsyncHandler(async (req, res) => {
 
 export const taskSingle = expressAsyncHandler(async (req, res) => {
   const singleid = req.body
+
+  console.log("type of id is " + typeof singleid);
 console.log(singleid)
   try {
-      const data = await taskData.find(singleid)
+      const data = await taskData.findOne(singleid)
+      console.log(data)
       if (data) {
         return  res.status(200).json({message:"successfully found single task",data})
       }

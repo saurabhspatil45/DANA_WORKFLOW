@@ -42,7 +42,7 @@ const [tableorwork, settableorwork] = useState(true);
     }, [page]);
 
     const openIssue = (param1) => {
-        // localStorage.setItem("workId",param1);
+        localStorage.setItem("workId",param1);
         // console.log(param1)
         // if (param1) {
         //     navigate('/workdetails')
@@ -232,6 +232,8 @@ const [tableorwork, settableorwork] = useState(true);
                         {data[0].data.map((res,index) => (
                             <React.Fragment key={res._id}>
                                 {/* {res.CreatorId===localStorage.getItem("username")} */}
+                                {console.log(res.ROStatus)}
+                       
                                 <tr>
                                     <td>{index+1}</td>
                                     <td style={{ color: 'blue', cursor: 'pointer' }} onClick={() => openManageModal(res._id,res.Issue)} >

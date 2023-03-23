@@ -4,12 +4,12 @@ import Divider from "@mui/material/Divider";
 import "./workdetails.css";
 import { useDispatch, useSelector } from "react-redux";
 import { getSingleNcrData } from "../../services/ncrServices";
-import { getAllTaskObject,getSingleTaskObject } from '../../services/TaskObjectServices'
+import { getAllTaskObject,getSingleTaskObject, updateSingleTaskObject } from '../../services/TaskObjectServices'
 import { getSingleTask,updateSingleTask } from "../../services/taskService";
 import { display } from "@mui/system";
 function Workdetails() {
   const dispatch = useDispatch();
-  const id = localStorage.getItem("workId");
+
   const [done, setdone] = useState(false);
   const onChange = (e)=>{
     setCredentials({ ...credentials, [e.target.name]: e.target.value });
@@ -29,27 +29,36 @@ function Workdetails() {
       // dispatch(updateSingleTask(id,credentials.action,credentials.causes,credentials.issuecat,credentials.lts,credentials.rcauses,credentials.vrcauses));
    
       dispatch(updateSingleTask(credentials));
+      console.log("updating taskObject")
+      dispatch(updateSingleTaskObject({ValidatorStatus:"Active",ROStatus:"NA"}))
      
     console.log(credentials)
     // let work = document.getElementById("work");
     // work.style.display ="none";
     setdone(true);
-      
+    // window.location.reload();
+
     
   }
   useEffect(() => {
+      const id = localStorage.getItem("workId");
+      console.log(id)
     dispatch(getSingleTask(id));
 
     // dispatch(getSingleNcrData(id));
-  },[handleSubmit]);
+  });
   
   const { singleData } = useSelector((state) => state.taskReducer);
+  console.log("thisi is my single data")
   const data = { ...singleData };
   console.log("this is task data")
-  console.log(data);
+  const detail = data.data;
+  const fd = {...detail}
+  console.log(fd.Id)
 console.log("contentment acton is")
-console.log(data.ContainmentAction)
-  const [credentials, setCredentials] = useState({   ContainmentAction:"",Causes:"",RootCause:"",VerifiedCause:"",IssueCatogorization:"",SolutionIdentified:""})
+console.log(fd.ContainmentAction)
+console.log(fd.ValidatorStatus == "Active" && fd.RCAValidatorId == localStorage.getItem("username"))
+  const [credentials, setCredentials] = useState({   ContainmentAction:"",Causes:"",RootCause:"",VerifiedCause:"",IssueCatogorization:"",SolutionIdentified:"",ValidatorStatus:"Active",ROStatus:"NA"})
   // const [credentials, setCredentials] = useState({ Id : 34 ,  Type : data.Type ,  Problem : data.Problem ,
   //     ProcessStage : data.ProcessStage ,  PartNo : data.PartNo ,  ReworkHrs : data.ReworkHrs ,  Issue : data.Issue ,  FailureType : data.FailureType , 
   //     RCA : data.RCA ,  Resolutionowner : data.Resolutionowner ,  ResolutionownerId : data.ResolutionownerId ,  RCAValidator : data.RCAValidator ,  
@@ -121,78 +130,79 @@ console.log(data.ContainmentAction)
     
     <div className="label-value">
         <span className="label">Id:</span>
-        <span className="value">{data.Id}</span>
+        <span className="value">{fd.Id}</span>
       </div>
       <div className="label-value">
         <span className="label">Type:</span>
-        <span className="value">{data.Type}</span>
+        <span className="value">{fd.Type}</span>
       </div>
       <div className="label-value">
         <span className="label">Problem:</span>
-        <span className="value">{data.Problem}</span>
+        <span className="value">{fd.Problem}</span>
       </div>
       <div className="label-value">
         <span className="label">ProcessStage:</span>
-        <span className="value">{data.ProcessStage}</span>
+        <span className="value">{fd.ProcessStage}</span>
       </div>
       <div className="label-value">
         <span className="label">PartNo:</span>
-        <span className="value">{data.PartNo}</span>
+        <span className="value">{fd.PartNo}</span>
       </div>
       <div className="label-value">
         <span className="label">ReworkHrs:</span>
-        <span className="value">{data.ReworkHrs}</span>
+        <span className="value">{fd.ReworkHrs}</span>
       </div>
       <div className="label-value">
         <span className="label">Issue:</span>
-        <span className="value">{data.Issue}</span>
+        <span className="value">{fd.Issue}</span>
       </div>
       <div className="label-value">
         <span className="label">FailureType:</span>
-        <span className="value">{data.FailureType}</span>
+        <span className="value">{fd.FailureType}</span>
       </div>
       <div className="label-value">
         <span className="label">RCA:</span>
-        <span className="value">{data.RCA}</span>
+        <span className="value">{fd.RCA}</span>
       </div>
       <div className="label-value">
         <span className="label">Resolutionowner:</span>
-        <span className="value">{data.Resolutionowner}</span>
+        <span className="value">{fd.Resolutionowner}</span>
       </div>
       <div className="label-value">
         <span className="label">ResolutionownerId:</span>
-        <span className="value">{data.ResolutionownerId}</span>
+        <span className="value">{fd.ResolutionownerId}</span>
       </div>
       <div className="label-value">
         <span className="label">RCAValidator:</span>
-        <span className="value">{data.RCAValidator}</span>
+        <span className="value">{fd.RCAValidator}</span>
       </div>
       <div className="label-value">
         <span className="label">Finalapprover:</span>
-        <span className="value">{data.Finalapprover}</span>
+        <span className="value">{fd.Finalapprover}</span>
       </div>
       <div className="label-value">
         <span className="label">FinalapproverId:</span>
-        <span className="value">{data.FinalapproverId}</span>
+        <span className="value">{fd.FinalapproverId}</span>
       </div>
       <div className="label-value">
         <span className="label">Creator:</span>
-        <span className="value">{data.Creator}</span>
+        <span className="value">{fd.Creator}</span>
       </div>
       <div className="label-value">
         <span className="label">CreatorId:</span>
-        <span className="value">{data.CreatorId}</span>
+        <span className="value">{fd.CreatorId}</span>
       </div>
       <div className="label-value">
         <span className="label">created:</span>
-        <span className="value">{data.created}</span>
+        <span className="value">{fd.created}</span>
+       
       </div>
   
     
 
  
 
-      {!done && data.ContainmentAction === ""? 
+      {!done && fd.ContainmentAction === ""? 
    <div id = "work"style={{ borderLeft: '2px solid black', height: '100', marginLeft: '5rem', position:'absolute',top:'10px',  left: '681px'}}>
           <div style={{ marginLeft: '1.5rem' }}>
             <Typography fontWeight={600} gutterBottom variant="h9" component="div">
@@ -256,47 +266,53 @@ console.log(data.ContainmentAction)
   <b style={{fontSize:"20px"}}>Your work on this task</b>
  <div className="label-value">
         <span className="label">  Containment action </span>
-        <span className="value">{data.ContainmentAction}</span>
+        <span className="value">{fd.ContainmentAction}</span>
       </div>
       <div className="label-value">
         <span className="label">Causes:</span>
-        <span className="value">{data.Causes}</span>
+        <span className="value">{fd.Causes}</span>
       </div>
       <div className="label-value">
         <span className="label">Problem:</span>
-        <span className="value">{data.Problem}</span>
+        <span className="value">{fd.Problem}</span>
       </div>
       <div className="label-value">
         <span className="label">ProcessStage:</span>
-        <span className="value">{data.ProcessStage}</span>
+        <span className="value">{fd.ProcessStage}</span>
       </div>
       <div className="label-value">
         <span className="label">RootCause:</span>
-        <span className="value">{data.RootCause}</span>
+        <span className="value">{fd.RootCause}</span>
       </div>
       <div className="label-value">
         <span className="label">ReworkHrs:</span>
-        <span className="value">{data.ReworkHrs}</span>
+        <span className="value">{fd.ReworkHrs}</span>
       </div>
       <div className="label-value">
         <span className="label">VerifiedCause:</span>
-        <span className="value">{data.VerifiedCause}</span>
+        <span className="value">{fd.VerifiedCause}</span>
       </div>
       <div className="label-value">
         <span className="label">FailureType:</span>
-        <span className="value">{data.FailureType}</span>
+        <span className="value">{fd.FailureType}</span>
       </div>
       <div className="label-value">
         <span className="label">IssueCatogorization:</span>
-        <span className="value">{data.IssueCatogorization}</span>
+        <span className="value">{fd.IssueCatogorization}</span>
       </div>
       <div className="label-value">
         <span className="label">SolutionIdentified:</span>
-        <span className="value">{data.SolutionIdentified}</span>
+        <span className="value">{fd.SolutionIdentified}</span>
       </div>
-
+      {
+ 
+ fd.ValidatorStatus == "Active" && fd.RCAValidatorId == localStorage.getItem("username")?
+ <div>validator is active</div>:""
+}
 </div>
 }
+
+
 </div>
 
 

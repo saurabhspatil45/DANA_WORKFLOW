@@ -25,6 +25,28 @@ export const PostTaskDataObject = createAsyncThunk('posttaskdataobject/post',
     await axios.post('http://localhost:3001/api/posttaskobject', { data })
   })
 
+
+
+
+
+
+
+
+  //update single task object
+
+  export const updateSingleTaskObject = createAsyncThunk(
+    "task/getSingleTaskObj",
+    async (credentials) => {
+      console.log("id and credentials")
+    const id = localStorage.getItem("workId")
+      console.log(id  )
+  
+  await axios.put(`http://localhost:3001/api/updatetaskObj/${id}`,credentials);
+     
+  
+  
+    }
+  );
 // initialState
 
 const initialState = {

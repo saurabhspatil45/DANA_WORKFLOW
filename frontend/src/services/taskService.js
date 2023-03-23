@@ -13,11 +13,14 @@ export const getAllTask = createAsyncThunk("getAllTask", async (search) => {
 export const getSingleTask = createAsyncThunk(
   "task/getSingleTask",
   async (id) => {
-    
-    const { data } = await axios.get(`http://localhost:3001/api/task`,{id});
-    console.log("task data is ")
-    console.log(data.data[0]);
-    return data.data[0];
+    //this will fetch task from taskdata database collection
+
+    console.log(typeof id)
+
+    const { data } = await axios.post(`http://localhost:3001/api/task`,{Id: id}
+    );
+ 
+    return data;
   }
 );
 //Update Single Data

@@ -7,7 +7,7 @@ const taskRoute = express.Router()
 // read router
 taskRoute.get('/getalltask',getTask)
 
-taskRoute.get('/task',taskSingle)
+taskRoute.post('/task',taskSingle)
 taskRoute.put('/updatetask/:id',updateSingleTask)
 //post task
 taskRoute.post("/posttask",PostTask)
